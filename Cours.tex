@@ -1,0 +1,319 @@
+% ==============================================================================
+% Fichier     : Cours.tex
+% Titre       : Analyse de Risque, Audit et Gestion de Crise
+% Auteur      : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Institution : Université de Yaoundé I - Ecole Nationale Supérieure Polytechnique - Département de Génie Informatique — LIMSI
+% Année       : 2025-2026
+% Description : Fichier principal. Orchestre 29 chapitres répartis en 4 modules.
+% Compilateur : pdflatex + biber
+%   → pdflatex Cours && biber Cours && pdflatex Cours && pdflatex Cours
+% ==============================================================================
+
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+\usepackage{Style_cours}
+\addbibresource{bibliographie.bib}
+
+\hypersetup{
+    pdftitle  = {Analyse de Risque, Audit et Gestion de Crise},
+    pdfauthor = {MINKA MI NGUIDJOÏ Thierry Emmanuel},
+    pdfsubject= {Cours universitaire — Gouvernance SI, EBIOS RM, ISO 27001, PCA, Cellule de Crise},
+    pdfkeywords={Analyse de Risque, Audit SI, Gestion de Crise, EBIOS RM, ISO 27001,
+                 ISO 19011, ISO 22301, RSSI, RETEX, PCA, Université de Yaoundé I}
+}
+
+% ==============================================================================
+\begin{document}
+% ==============================================================================
+
+% ---------------------------------------------------------------------------
+% 1. PAGE DE TITRE
+% ---------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\pagecolor{CouleurPrimaire}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \fill[CouleurAccent]
+        (current page.south west) rectangle
+        ([yshift=2.2cm] current page.south east);
+    \fill[CouleurAccent]
+        ([yshift=-1.5cm] current page.north west) rectangle
+        ([yshift=-1.8cm] current page.north east);
+    % Déco : cercles concentiques (symbolise le cycle PDCA)
+    \foreach \r in {4,5.5,7} {
+        \draw[white, opacity=0.04, line width=8pt]
+            ([xshift=11cm, yshift=-6cm] current page.north west) circle (\r cm);
+    }
+\end{tikzpicture}
+
+\vspace*{1.5cm}
+
+\begin{center}
+    {\color{white!80!gray}\small\scshape
+        Université de Yaoundé~I~·~Département d'Informatique~·~LIMSI}\\[0.4ex]
+    {\color{CouleurAccent}\rule{0.55\linewidth}{0.8pt}}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\color{white!60!gray}\footnotesize\scshape cours universitaire}\\[1ex]
+    {\color{white}\fontsize{30}{38}\selectfont\bfseries
+        Analyse de Risque,}\\[0.3ex]
+    {\color{white}\fontsize{30}{38}\selectfont\bfseries
+        Audit}\\[0.3ex]
+    {\color{CouleurAccent}\fontsize{28}{36}\selectfont\bfseries
+        et Gestion de Crise}\\[1.5ex]
+    {\color{white!85!gray}\Large\itshape
+        Gouvernance, Conformité, Résilience et RETEX}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{center}
+    {\color{white!70!gray}\small
+        \ding{229}\quad Cas fil rouge : Entreprise LiZbiZ (E-commerce \& Logistique)}\\[0.5ex]
+    {\color{white!70!gray}\small
+        \ding{44}\quad EBIOS RM~·~ISO 27001/27005~·~ISO 19011~·~ISO 22301~·~ISO 27035}\\[0.5ex]
+    {\color{white!70!gray}\small
+        \ding{228}\quad Cycle PDCA~·~Matrice RACI~·~PCA/PRA~·~Cellule de Crise~·~RETEX}
+\end{center}
+
+\vfill
+
+\begin{center}
+    {\color{CouleurAccent}\rule{0.7\linewidth}{1.2pt}}\\[1.2ex]
+    {\color{white}\large\bfseries MINKA MI NGUIDJOÏ Thierry Emmanuel}\\[0.4ex]
+    {\color{white!80!gray}\small
+        CISA~·~CISM~·~CGEIT~·~CRISC~·~CDPSE}\\[0.3ex]
+    {\color{white!70!gray}\footnotesize\itshape
+        Chercheur — LIMSI, Université de Yaoundé~I}\\[0.3ex]
+    {\color{white!70!gray}\footnotesize\itshape
+        Expert Judiciaire~—~Cadre supérieur, Contrôle Supérieur de l'État~—~Consultant International}\\[1.2ex]
+    {\color{CouleurAccent}\rule{0.7\linewidth}{1.2pt}}
+\end{center}
+
+\vspace{0.6cm}
+\begin{center}
+    {\color{white!60!gray}\small Année académique 2024--2025}
+\end{center}
+
+\afterpage{\nopagecolor}
+\end{titlepage}
+
+% ---------------------------------------------------------------------------
+% 2. VERSO COUVERTURE
+% ---------------------------------------------------------------------------
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \begin{minipage}{0.78\textwidth}
+        \footnotesize\color{CouleurBordInfo}
+        \begin{center}
+            {\bfseries\color{CouleurPrimaire}
+                Analyse de Risque, Audit et Gestion de Crise}\\[0.4ex]
+            {\itshape Gouvernance, Conformité, Résilience et RETEX}
+        \end{center}
+        \vspace{0.8ex}\hrule\vspace{0.8ex}
+        \textbf{Auteur :} MINKA MI NGUIDJOÏ Thierry Emmanuel\\
+        \textbf{Institution :} Université de Yaoundé~I — LIMSI\\
+        \textbf{Année :} 2024--2025\\[0.5ex]
+        Ce document est un support de cours universitaire. Toute reproduction partielle
+        à des fins commerciales est interdite sans l'accord écrit de l'auteur. Les
+        certifications CISA, CISM, CGEIT, CRISC et CDPSE sont des marques déposées de
+        l'\textbf{ISACA}. EBIOS RM est une méthode de l'\textbf{ANSSI}.\\[0.8ex]
+        \hrule\vspace{0.5ex}
+        {\centering\itshape
+        «~La sécurité n'est ni technique, ni organisationnelle : elle est les deux à la fois.~»}
+    \end{minipage}
+\end{center}
+\vspace*{\fill}
+
+% ---------------------------------------------------------------------------
+% 3. DÉDICACE
+% ---------------------------------------------------------------------------
+\clearpage\thispagestyle{empty}
+\vspace*{3cm}
+\begin{flushright}
+    \begin{minipage}{0.62\textwidth}
+        \itshape\large\color{CouleurPrimaire}
+        À tous ceux qui, dans les organisations,\\
+        prennent la peine de modéliser les risques avant qu'ils ne surviennent,\\
+        et le courage de piloter la crise quand elle frappe.\\[1.5ex]
+        \normalsize\normalfont\color{CouleurAccent}
+        Et à ceux qui comprennent qu'un bon RETEX\\
+        vaut mieux que dix bonnes intentions.
+    \end{minipage}
+\end{flushright}
+
+% ---------------------------------------------------------------------------
+% 4. REMERCIEMENTS
+% ---------------------------------------------------------------------------
+\clearpage\thispagestyle{empty}
+\chapter*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+
+La conception de ce cours a bénéficié de l'expérience conjointe du chercheur et du praticien. L'auteur exprime sa reconnaissance au \textbf{Professeur Flavien Serge Mani Onana} et au \textbf{Professeur Thomas Djotio Ndié} pour leur encadrement exigeant et leur ouverture d'esprit face à des travaux qui, de la cryptographie institutionnelle à la gouvernance des SI, explorent des territoires disciplinaires encore peu balisés.
+
+La matière de ce cours a été nourrie par les missions menées au sein des \textbf{Services du Contrôle Supérieur de l'État}, où l'audit n'est pas une abstraction académique mais une responsabilité institutionnelle quotidienne. Elle a également été enrichie par les défis posés par le \textbf{projet GIP Bénin}, qui confronte en temps réel les principes de sécurité aux contraintes de la gouvernance publique africaine.
+
+À nos étudiants, qui jouent le jeu de la simulation de crise avec un sérieux et une créativité qui ne cessent de surprendre.
+
+% ---------------------------------------------------------------------------
+% 5. TDM, FIGURES, TABLEAUX, CODES
+% ---------------------------------------------------------------------------
+\clearpage\tableofcontents
+\clearpage\listoffigures\addcontentsline{toc}{chapter}{Liste des figures}
+\listoftables\addcontentsline{toc}{chapter}{Liste des tableaux}
+\lstlistoflistings\addcontentsline{toc}{chapter}{Liste des codes source}
+
+% ==============================================================================
+% CORPS DU COURS
+% ==============================================================================
+\mainmatter
+
+% --- Introduction Générale ---
+\input{chapitres/0_Introduction}
+
+% --- Chapitre 1 & 2 : Introduction et LiZbiZ (avant les parties) ---
+\input{chapitres/01_introduction}
+\input{chapitres/02_cas_lizbiz}
+
+\clearpage
+% ============================================================
+% PARTIE I — Gouvernance et Analyse de Risque
+% ============================================================
+\clearpage
+\part{Gouvernance et Analyse de Risque}
+
+\input{chapitres/03_gouvernance}
+\input{chapitres/04_vocabulaire_risque}
+\input{chapitres/05_referentiels}
+\input{chapitres/06_application_risque}
+\input{chapitres/07_traitement_reporting}
+\input{chapitres/08_eval_module1}
+
+\clearpage
+% ============================================================
+% PARTIE II — Audit et Management de la Qualité
+% ============================================================
+\clearpage
+\part{Audit et Management de la Qualité}
+
+\input{chapitres/09_intro_audit}
+\input{chapitres/10_processus_audit_a}
+\input{chapitres/11_processus_audit_b}
+\input{chapitres/12_referentiels_audit}
+\input{chapitres/13_application_audit}
+\input{chapitres/14_rapport_audit}
+\input{chapitres/15_eval_module2}
+
+\clearpage
+% ============================================================
+% PARTIE III — Gestion des Incidents et Continuité
+% ============================================================
+\clearpage
+\part{Gestion des Incidents et Continuité}
+
+\input{chapitres/16_intro_incidents}
+\input{chapitres/17_processus_incident}
+\input{chapitres/18_forensics}
+\input{chapitres/19_continuite}
+\input{chapitres/20_application_pca}
+\input{chapitres/21_eval_module3}
+
+\clearpage
+% ============================================================
+% PARTIE IV — Gestion de Crise et RETEX
+% ============================================================
+\clearpage
+\part{Gestion de Crise et RETEX}
+
+\input{chapitres/22_intro_crise}
+\input{chapitres/23_cellule_crise}
+\input{chapitres/24_communication_crise}
+\input{chapitres/25_simulation_crise}
+\input{chapitres/26_retex}
+\input{chapitres/27_eval_module4}
+
+% --- Résumé et Évaluation Finale ---
+\input{chapitres/28_resume}
+\input{chapitres/29_eval_finale}
+
+% --- Conclusion Générale ---
+\input{chapitres/00_Conclusion}
+
+% ==============================================================================
+% MATIÈRE POSTLIMINAIRE
+% ==============================================================================
+\backmatter
+
+\clearpage
+\printbibliography[heading=bibintoc, title={Bibliographie et Références}]
+
+\clearpage
+\input{chapitres/Apropos_Auteur}
+
+\clearpage
+\printindex
+\addcontentsline{toc}{chapter}{Index}
+
+% ==============================================================================
+% 4ÈME DE COUVERTURE
+% ==============================================================================
+\clearpage\thispagestyle{empty}
+\pagecolor{CouleurPrimaire}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \fill[CouleurAccent]
+        (current page.south west) rectangle ([yshift=1.8cm] current page.south east);
+    \fill[CouleurAccent]
+        ([yshift=-1.4cm] current page.north west) rectangle ([yshift=-1.7cm] current page.north east);
+\end{tikzpicture}
+
+\vspace*{2.5cm}
+
+\begin{center}
+    {\color{CouleurAccent}\rule{0.6\linewidth}{1pt}}\\[1.5ex]
+    {\color{white}\Large\bfseries À propos de ce cours}\\[1.5ex]
+    {\color{CouleurAccent}\rule{0.6\linewidth}{1pt}}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{minipage}{0.75\textwidth}
+\color{white!85!gray}\setstretch{1.4}
+
+Ce cours propose une formation complète au cycle de vie de la \textbf{sécurité de l'information}, depuis l'analyse des risques jusqu'au retour d'expérience post-crise. Articulé autour du cas de l'entreprise LiZbiZ, il couvre quatre domaines interdépendants : gouvernance et analyse de risque (EBIOS RM, ISO 27005), audit de sécurité (ISO 19011, ISO 27001), gestion des incidents et continuité d'activité (ISO 27035, ISO 22301), et gestion de crise avec simulation Tabletop.
+
+\medskip
+
+Il s'adresse aux futurs ingénieurs cybersécurité, aux managers SI, aux candidats aux certifications CISA, CISM et CRISC, et à tout professionnel souhaitant maîtriser la dimension stratégique et organisationnelle de la sécurité.
+
+\medskip
+
+Les référentiels couverts incluent : EBIOS RM (ANSSI), NIST SP 800-30, ISO 31000, 27001, 27005, 19011, 22301, 27035, et le cadre COBIT 2019.
+\end{minipage}
+\end{center}
+
+\vfill
+
+\begin{center}
+    {\color{CouleurAccent}\rule{0.5\linewidth}{0.8pt}}\\[1ex]
+    {\color{white}\bfseries MINKA MI NGUIDJOÏ Thierry Emmanuel}\\[0.3ex]
+    {\color{white!75!gray}\footnotesize CISA · CISM · CGEIT · CRISC · CDPSE}\\[0.3ex]
+    {\color{white!65!gray}\footnotesize\itshape
+        Chercheur — LIMSI, Université de Yaoundé~I · Cameroun}\\[1ex]
+    {\color{CouleurAccent}\rule{0.5\linewidth}{0.8pt}}
+\end{center}
+
+\vspace{1cm}
+\afterpage{\nopagecolor}
+
+\end{document}
+% ==============================================================================
+% Fin de Cours.tex
+% ==============================================================================
