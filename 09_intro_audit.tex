@@ -1,0 +1,172 @@
+\chapter{Introduction à l'Audit et au Management de la Qualité}
+\label{chap:introaudit}
+
+Après avoir analysé les risques (Module 1), il faut vérifier si les mesures prises sont efficaces. C'est le rôle de l'audit. Ce chapitre pose les fondations de la démarche d'audit et de la qualité.
+
+\section{Présentation : Qu'est-ce qu'un Audit ?}
+
+\subsection{Définition de l'Audit}
+
+\begin{boxdef}
+\textbf{Audit :} Processus méthodique, indépendant et documenté permettant d'obtenir des preuves objectives et de les évaluer pour déterminer dans quelle mesure les critères d'audit sont satisfaits.
+\end{boxdef}
+
+Contrairement à une inspection "policière", l'audit est un outil de pilotage et d'amélioration continue. Il ne s'agit pas de punir, mais de mesurer l'écart entre ce qui est prévu (la règle) et ce qui est fait (la réalité).
+
+\subsection{Les Trois Types d'Audits}
+
+Il est crucial de distinguer les différents types d'audits selon l'auditeur et l'objectif.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{2.5cm}p{4cm}p{5cm}}
+    \toprule
+    \textbf{Type} & \textbf{Auditeur} & \textbf{Objectif} \\
+    \midrule
+    \textbf{Interne} & Membre de l'entreprise (ou prestataire mandaté par elle). & Vérifier l'efficacité interne, préparer une certification, améliorer les processus. \\
+    \textbf{Externe (Tiers)} & Prestataire externe (Cabinet de conseil). & Certification (ISO 27001), conformité réglementaire, ou audit de fournisseurs. \\
+    \textbf{De Conformité} & Régulateur (CNIL, Banque de France) ou Client. & Vérifier le respect d'une loi ou d'un contrat. \\
+    \bottomrule
+\end{tabular}
+\caption{Typologie des audits}
+\end{table}
+
+\begin{boxlizbiz}
+\textbf{Contexte LiZbiZ :}
+L'entreprise reçoit de plus en plus de demandes de clients B2B : "Êtes-vous certifiés ISO 27001 ?". Le PDG décide de lancer un projet de certification.
+\begin{itemize}
+    \item \textbf{Audit Interne :} Vous (les étudiants) allez réaliser un pré-audit pour voir si LiZbiZ est prête.
+    \item \textbf{Audit Externe :} Un organisme certificateur (ex: BSI, AFNOR) viendra dans 6 mois pour délivrer le certificat.
+\end{itemize}
+\end{boxlizbiz}
+
+\subsection{La Notion de Qualité dans le SI}
+
+L'audit est l'un des piliers du \textbf{Management de la Qualité}. La qualité en informatique, ce n'est pas seulement "un code sans bug", c'est la capacité du SI à satisfaire les besoins exprimés et implicites des utilisateurs.
+
+\begin{boxdef}
+\textbf{Qualité :} Aptitude d'un ensemble de caractéristiques intrinsèques à satisfaire les exigences (Norme ISO 9000).
+\end{boxdef}
+
+Lien avec la sécurité : Un SI de "qualité" est un SI sécurisé, disponible et conforme.
+
+% ------------------------------------------------------------------------------
+\section{Concepts Clés de l'Audit}
+% ------------------------------------------------------------------------------
+
+\subsection{Indépendance de l'Auditeur}
+
+C'est le principe fondamental. L'auditeur ne doit pas être juge et partie.
+
+\begin{boxalert}
+\textbf{Règle absolue :} On n'audite jamais son propre travail. Si l'administrateur réseau vérifie ses propres configurations, ce n'est pas un audit, c'est un autocontrôle.
+\end{boxalert}
+
+\begin{boxlizbiz}
+\textbf{Erreur classique chez LiZbiZ :}
+La DSI (Sophie) voulait demander à l'Admin Sys de vérifier la sécurité du pare-feu. C'est impossible car c'est lui qui configure le pare-feu.
+\textbf{Solution :} Vous (consultants externes) ou un autre technicien non responsable du pare-feu devez effectuer l'audit.
+\end{boxlizbiz}
+
+\subsection{Objectivité et Preuves}
+
+L'audit se base sur des \textbf{preuves} (évidences), jamais sur des suppositions.
+
+\textbf{Sources de preuves :}
+\begin{itemize}
+    \item \textbf{Documents :} Procédures écrites, politiques de sécurité, tickets d'incident.
+    \item \textbf{Enregistrements :} Logs système, sauvegardes, captures d'écran.
+    \item \textbf{Entretiens :} Témoignages des collaborateurs (recoupés avec les écrits).
+    \item \textbf{Observation :} Voir ce qui se passe réellement (ex: mots de passe sur des post-it).
+\end{itemize}
+
+\subsection{Critères d'Audit}
+
+\begin{boxdef}
+\textbf{Critères d'audit :} L'ensemble des politiques, procédures ou exigences utilisées comme référence. C'est le "mètre étalon".
+\end{boxdef}
+
+Exemple de critères : "La politique de sécurité de LiZbiZ", "La norme ISO 27001", "Le RGPD".
+
+% ------------------------------------------------------------------------------
+\section{Jargon et Vocabulaire de l'Auditeur}
+% ------------------------------------------------------------------------------
+
+\subsection{Les Acteurs de l'Audit}
+
+\begin{itemize}
+    \item \textbf{L'Auditeur :} Celui qui mène l'audit.
+    \item \textbf{L'Audité :} La personne ou l'entité qui est auditée (ex: le service informatique).
+    \item \textbf{Le Commanditaire :} Celui qui demande l'audit (ex: le PDG ou le COMEX).
+    \item \textbf{Le Guide :} Personne désignée par l'audité pour accompagner l'auditeur (ex: le DSI).
+\end{itemize}
+
+\subsection{Le Périmètre d'Audit (Scope)}
+
+C'est la frontière de l'audit. Il est impossible de tout auditer en une fois. Le périmètre définit ce qui est \textbf{in} et ce qui est \textbf{out}.
+
+\begin{boxlizbiz}
+\textbf{Périmètre LiZbiZ (Projet Certification) :}
+\begin{itemize}
+    \item \textbf{IN :} Le système d'information de gestion des commandes (ERP, Web, DB), les locaux de Lyon.
+    \item \textbf{OUT :} La logistique de transport externalisée (sous-traitant), le site de test de développement.
+\end{itemize}
+\end{boxlizbiz}
+
+\subsection{La Non-Conformité (NC)}
+
+C'est le résultat final de l'audit le plus redouté.
+
+\begin{boxdef}
+\textbf{Non-Conformité (NC) :} Non-satisfaction d'une exigence. C'est l'écart entre le "Dire" (la procédure) et le "Faire" (la réalité), ou l'absence de procédure pour une exigence obligatoire.
+\end{boxdef}
+
+On distingue souvent :
+\begin{itemize}
+    \item \textbf{NC Majeure :} Défaillance grave ou absence totale de système. Bloque la certification.
+    \item \textbf{NC Mineure :} Incident isolé ou petite erreur documentaire. N'empêche pas la certification si corrigée.
+    \item \textbf{Observation :} Piste d'amélioration, pas encore une non-conformité.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Préparation de la Mission d'Audit}
+% ------------------------------------------------------------------------------
+
+\subsection{Contexte de la Mission}
+
+Le PDG de LiZbiZ veut obtenir la certification ISO 27001 d'ici un an. Il mandate votre cabinet de conseil pour réaliser un \textbf{audit de pré-évaluation (Gap Analysis)}.
+
+\subsection{Objectifs}
+
+L'objectif n'est pas de "piéger" les équipes, mais d'identifier les écarts avant le passage du certificateur officiel.
+
+\subsection{Rôles (RACI de l'Audit)}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lcccc}
+    \toprule
+    \textbf{Tâche} & \textbf{PDG} & \textbf{DSI} & \textbf{Équipe IT} & \textbf{Vous (Auditeurs)} \\
+    \midrule
+    Définir le périmètre & A & C & I & C \\
+    Préparer les documents & I & A & R & I \\
+    Réaliser les tests techniques & I & I & C & R \\
+    Rédiger le rapport d'audit & I & I & I & A \\
+    Présenter les résultats & I & I & I & R \\
+    \bottomrule
+\end{tabular}
+\caption{RACI de la mission d'audit LiZbiZ}
+\end{table}
+
+\subsection{Travaux Pratiques : Préparation}
+
+\begin{boxlizbiz}
+\textbf{Exercice de préparation :}
+Avant de commencer les tests techniques, vous devez préparer votre grille d'audit.
+À partir de l'Annexe A de l'ISO 27001, sélectionnez 3 contrôles (ex: A.9.2.1 Enregistrement des utilisateurs) qui seront audités en priorité pour la séance suivante.
+\end{boxlizbiz}
+
+% ==============================================================================
+% Fichier : 03_module_audit.tex (Extrait Chapitre 2)
+% Description : Le Processus d'Audit selon ISO 19011
+% ==============================================================================

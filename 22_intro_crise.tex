@@ -1,0 +1,129 @@
+\chapter{Introduction à la Gestion de Crise}
+\label{chap:introcrise}
+
+La gestion de crise est l'ultime rempart. Lorsque la prévention a échoué et que l'incident dépasse les capacités de réponse opérationnelle, l'entreprise entre en zone de turbulence. C'est un moment de vérité pour la gouvernance.
+
+\section{Présentation : De l'Incident à la Crise}
+
+\subsection{La Rupture de l'Équilibre}
+
+Une panne informatique ou une attaque peut être un incident gérable. Mais elle devient une \textbf{crise} lorsqu'elle menace la pérennité de l'organisation, sa réputation, ou met en danger des vies humaines.
+
+\begin{boxdef}
+\textbf{Crise :} Événement soudain, inattendu et menaçant qui perturbe gravement le fonctionnement normal de l'organisation et nécessite des décisions rapides sous forte pression.
+\end{boxdef}
+
+La crise se caractérise souvent par :
+\begin{itemize}
+    \item \textbf{L'incertitude :} On ne maîtrise pas toute l'information.
+    \item \textbf{L'urgence :} Le temps manque pour décider.
+    \item \textbf{La pression médiatique :} L'extérieur (presse, réseaux sociaux) regarde et juge.
+\end{itemize}
+
+\subsection{Distinction Incident vs Crise}
+
+Il est fondamental de ne pas confondre "Incident Majeur" et "Crise".
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{4cm}p{4cm}p{4cm}}
+    \toprule
+    \textbf{Critère} & \textbf{Incident Majeur} & \textbf{Crise} \\
+    \midrule
+    \textbf{Focus} & Technique & Stratégique / Image \\
+    \textbf{Gestion} & DSI / Technique & Direction Générale \\
+    \textbf{Communication} & Technique (Interne) & Médiatique / Externe \\
+    \textbf{Durée} & Heures à Jours & Semaines à Mois \\
+    \textbf{Impact} & Arrêt activité & Survie de l'entreprise \\
+    \bottomrule
+\end{tabular}
+\caption{Comparaison Incident Majeur et Crise}
+\end{table}
+
+\begin{boxlizbiz}
+\textbf{Le "Big Bang" chez LiZbiZ :}
+Jusqu'ici, le Ransomware était un incident technique (Module 3).
+Ce matin, un journaliste du "Monde" appelle la direction : "Nous avons en notre possession des preuves que les données de vos clients sont en vente sur le Dark Web. Que faites-vous ?".
+\textbf{Bascule :} L'incident technique devient une \textbf{Crise Médiatique et Juridique}.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Concepts Clés}
+% ------------------------------------------------------------------------------
+
+\subsection{Le Seuil de Rupture}
+
+Toute entreprise a une capacité d'absorption des chocs. La crise survient quand ce seuil est dépassé.
+Ce seuil dépend de la culture de l'entreprise, de sa trésorerie, et de sa réputation préalable.
+
+\subsection{Les Impacts Multidimensionnels}
+
+Une crise cyber n'est jamais uniquement cyber. Elle a des répercussions en cascade :
+
+\begin{enumerate}
+    \item \textbf{Impact Financier :} Perte de CA, coût de la réparation, amendes (CNIL), baisse du cours de bourse.
+    \item \textbf{Impact Réputationnel :} Perte de confiance des clients, dégradations de la marque employeur.
+    \item \textbf{Impact Juridique :} Mise en cause de la responsabilité des dirigeants (infractions pénales possibles).
+    \item \textbf{Impact Humain :} Stress intense, burn-out des équipes techniques, conflits internes.
+\end{enumerate}
+
+\subsection{L'Instinct de Survie}
+
+En temps de crise, les processus habituels (comités, validations hiérarchiques longues) sont inopérants. L'entreprise doit adopter un mode de fonctionnement "commando" : centralisation de la décision et exécution rapide.
+
+% ------------------------------------------------------------------------------
+\section{Jargon de la Gestion de Crise}
+% ------------------------------------------------------------------------------
+
+\subsection{PCA vs PGC}
+
+Il ne faut pas les confondre :
+
+\begin{itemize}
+    \item \textbf{PCA (Plan de Continuité d'Activité) :} "Comment on continue à travailler ?" (Focus : Opérations).
+    \item \textbf{PGC (Plan de Gestion de Crise) :} "Comment on survit à la tempête ?" (Focus : Décision, Communication, Survie).
+\end{itemize}
+
+Le PCA est un outil technique ; le PGC est un outil de gouvernance.
+
+\subsection{Zone de Turbulence}
+
+Période d'intense agitation où l'information est brouillée, contradictoire et où les rumeurs fleurissent. C'est la phase la plus dangereuse.
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Scénario "Catastrophe"}
+% ------------------------------------------------------------------------------
+
+\subsection{Mise en Situation}
+
+\begin{boxlizbiz}
+\textbf{Lundi matin, 08h30.}
+Le titre boursier de LiZbiZ s'effondre de 15\% à l'ouverture.
+
+\textbf{La cause :} Un tweet viral d'un hacker célèbre (@CyberGhost) publie un lien vers 10 000 dossiers médicaux de clients LiZbiZ (fuite de données santé).
+
+\textbf{Réactions immédiates :}
+\begin{itemize}
+    \item Le standard téléphonique est saturé par les appels de clients paniqués.
+    \item La boîte mail de la direction reçoit des menaces de recours collectifs.
+    \item La DSI est introuvable (en réunion technique sur le Ransomware).
+\end{itemize}
+
+\textbf{Question :} Le PDG est au pied du mur. S'il ne réagit pas dans l'heure, la confiance sera définitivement perdue. C'est l'activation du PGC.
+\end{boxlizbiz}
+
+\subsection{Travaux Pratiques : Identification des Enjeux}
+
+En groupes, les étudiants doivent lister les 3 priorités absolues pour le PDG dans les 30 prochaines minutes.
+
+\textbf{Pistes de réflexion :}
+\begin{enumerate}
+    \item \textbf{Protéger les personnes :} Informer les clients concernés (Obligation RGPD).
+    \item \textbf{Maîtriser l'information :} Ne pas répondre n'importe quoi aux journalistes. Préparer un "Holding Statement" (Déclaration de maintien).
+    \item \textbf{Organiser le commandement :} Réunir la Cellule de Crise immédiatement.
+\end{enumerate}
+
+% ==============================================================================
+% Fichier : 05_module_crise.tex (Extrait Chapitre 2)
+% Description : Organisation de la Cellule de Crise
+% ==============================================================================

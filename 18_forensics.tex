@@ -1,0 +1,140 @@
+\chapter{Investigation Numérique (Forensics)}
+\label{chap:forensics}
+
+Une fois l'incident détecté et contenu, il faut comprendre \textbf{comment} l'attaquant est entré et \textbf{ce qu'il a fait}. C'est le rôle de l'investigation numérique, ou \textit{Computer Forensics}.
+
+\section{Présentation : Les Objectifs de l'Investigation}
+
+\subsection{Définition}
+
+\begin{boxdef}
+\textbf{Investigation Numérique (Forensics) :} Science qui consiste à identifier, préserver, analyser et présenter des preuves numériques de manière à ce qu'elles soient recevables juridiquement.
+\end{boxdef}
+
+L'objectif est double :
+\begin{itemize}
+    \item \textbf{Technique :} Comprendre l'attaque pour reboucher la faille (Root Cause Analysis).
+    \item \textbf{Juridique :} Constituer un dossier de preuves pour une éventuelle action en justice ou une assurance.
+\end{itemize}
+
+\subsection{Le Principe Fondamental : Ne Rien Altérer}
+
+La règle d'or en forensics est l'intégrité. Toute manipulation de la preuve doit pouvoir être justifiée. Si l'intégrité d'une preuve est douteuse, elle sera rejetée par un tribunal.
+
+% ------------------------------------------------------------------------------
+\section{Concepts Clés et Volatilité}
+% ------------------------------------------------------------------------------
+
+\subsection{L'Ordre de Volatilité (Order of Volatility)}
+
+Les données numériques ne sont pas toutes égales face au temps. Certaines disparaissent dès que l'on éteint l'ordinateur. Il faut collecter les plus fragiles en premier.
+
+L'ordre standard (RFC 3227) est :
+\begin{enumerate}
+    \item \textbf{Registres, Cache CPU} (Très volatile).
+    \item \textbf{Mémoire Vive (RAM)} : Contient les processus en cours, les mots de passe en clair, les connexions réseaux ouvertes. \textbf{Disparaît à l'extinction.}
+    \item \textbf{État du réseau} (Connexions actives, table ARP).
+    \item \textbf{Processus en cours}.
+    \item \textbf{Disque Dur} : Fichiers, Logs. (Persistant).
+    \item \textbf{Configuration distante} (Logs routeurs, pare-feu).
+    \item \textbf{Sauvegardes physiques} (Bandes, Archives).
+\end{enumerate}
+
+\begin{boxlizbiz}
+\textbf{Erreur classique LiZbiZ :}
+Un technicien, voyant un poste infecté, l'éteint immédiatement ("Pour stopper le virus").
+\textbf{Conséquence Forensique :} La mémoire vive (RAM) est perdue. On ne saura jamais quels programmes le virus lançait ni s'il avait ouvert une connexion distante vers un serveur de commande (C\&C).
+\textbf{Bonne pratique :} Faire une "image mémoire" (dump) \textbf{avant} d'éteindre.
+\end{boxlizbiz}
+
+\subsection{Chaîne de Custodie (Chain of Custody)}
+
+\begin{boxdef}
+\textbf{Chaîne de Custodie :} Document qui retrace l'historique complet d'une preuve depuis sa collecte jusqu'à sa présentation. Qui l'a manipulée, quand, pourquoi, et où elle est stockée.
+\end{boxdef}
+
+C'est le document qui garantit l'intégrité de la preuve.
+
+% ------------------------------------------------------------------------------
+\section{Jargon de l'Investigateur}
+% ------------------------------------------------------------------------------
+
+\subsection{Image Disque et Acquisition}
+
+\begin{itemize}
+    \item \textbf{Image Disque (Disk Image) :} Copie bit-à-bit exacte du support de stockage. On travaille sur la copie, jamais sur l'original.
+    \item \textbf{Write Blocker :} Matériel physique qui empêche toute écriture sur le disque dur lors de la connexion pour l'acquisition (préservation).
+\end{itemize}
+
+\subsection{Hash (Empreinte Cryptographique)}
+
+\begin{boxdef}
+\textbf{Hash :} Chaîne de caractères calculée mathématiquement (ex: MD5, SHA-256) qui sert d'empreinte digitale à un fichier. Si un seul bit change, le hash change complètement.
+\end{boxdef}
+
+C'est l'outil de preuve d'intégrité.
+
+\begin{boxlizbiz}
+\textbf{Procédure LiZbiZ :}
+L'investigateur fait une image du disque dur du serveur compromis.
+1. Calcul du Hash de l'original : \texttt{a3f2e...}
+2. Calcul du Hash de la copie : \texttt{a3f2e...}
+Si les hashs sont identiques, la copie est parfaite et recevable en justice.
+\end{boxlizbiz}
+
+\subsection{Artéfacts}
+
+\begin{boxdef}
+\textbf{Artéfacts :} Traces laissées par l'activité d'un utilisateur ou d'un programme. Ce sont les indices de l'enquête.
+\end{boxdef}
+
+Exemples : Historique navigateur, fichiers récemment ouverts (Prefetch), logs Windows (Event Viewer), corbeille, cache DNS.
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Réaction Forensique sur le Lab}
+% ------------------------------------------------------------------------------
+
+\subsection{Scénario : Analyse Post-Mortem}
+
+\begin{boxlizbiz}
+\textbf{Situation :} L'alerte SSH du chapitre précédent a été confirmée. Un attaquant a accédé le serveur ERP via le VLAN IoT. Le serveur est isolé du réseau mais toujours allumé.
+\end{boxlizbiz}
+
+\subsection{Travaux Pratiques : Collecte de Preuves}
+
+Les étudiants doivent agir comme des enquêteurs numériques sur la machine virtuelle (Linux) dans GNS3.
+
+\textbf{Étape 1 : Capture de la mémoire (Simulée)}
+Sur un système Linux, on peut utiliser des outils comme \textit{LiME} ou \textit{dd} sur \texttt{/dev/mem}. Ici, nous allons simuler la capture de l'état du système.
+\begin{itemize}
+    \item \textbf{Commande :} Lister les connexions actives suspectes.
+    \texttt{ss -tupan} ou \texttt{netstat -tupan}.
+    \item \textbf{Objectif :} Voir si l'attaquant est encore connecté ou a laissé une "backdoor" (porte dérobée).
+\end{itemize}
+
+\textbf{Étape 2 : Analyse des Logs (Artéfacts)}
+L'attaquant s'est connecté en SSH. Où chercher ?
+\begin{itemize}
+    \item \textbf{Fichier :} \texttt{/var/log/auth.log} (Debian/Ubuntu).
+    \item \textbf{Commande :} \texttt{grep "Failed password" /var/log/auth.log} ou \texttt{grep "Accepted password"}.
+    \item \textbf{Preuve recherchée :} L'adresse IP de l'attaquant, l'heure de connexion, le compte utilisé.
+\end{itemize}
+
+\textbf{Étape 3 : Recherche de fichiers modifiés}
+Quels fichiers l'attaquant a-t-il téléchargés ou modifiés ?
+\begin{itemize}
+    \item \textbf{Commande :} \texttt{find / -mtime -1 -ls}.
+    \item \textbf{Explication :} Liste tous les fichiers modifiés dans les dernières 24 heures.
+\end{itemize}
+
+\textbf{Étape 4 : Calcul de Hash}
+Pour valider l'intégrité d'un fichier suspect trouvé (ex: un script malveillant \texttt{cleanup.sh}).
+\begin{itemize}
+    \item \textbf{Commande :} \texttt{sha256sum cleanup.sh}.
+    \item \textbf{Livrable :} Notez le hash dans le rapport d'investigation.
+\end{itemize}
+
+% ==============================================================================
+% Fichier : 04_module_incident.tex (Extrait Chapitre 4)
+% Description : Continuité d'Activité et Résilience (ISO 22301)
+% ==============================================================================

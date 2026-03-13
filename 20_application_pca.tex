@@ -1,0 +1,135 @@
+\chapter{Application Pratique : Mise en œuvre du PCA}
+\label{chap:apppca}
+
+La théorie de la continuité ne vaut rien sans des tests réguliers. Ce chapitre met les étudiants en situation de crise pour activer et exécuter le Plan de Continuité d'Activité (PCA) de LiZbiZ.
+
+\section{Étape 1 : Structure du Plan (Rédaction)}
+% ------------------------------------------------------------------------------
+
+Avant de lancer la simulation, il faut structurer le document de référence.
+
+\subsection{Composition du Document PCA}
+
+Un PCA n'est pas un gros dossier poussiéreux. Il est composé de fiches actions immédiatement utilisables.
+
+\begin{itemize}
+    \item \textbf{Fiche de Réflexe :} Actions immédiates (Qui appeler ? Où aller ?).
+    \item \textbf{Fiche de Conduite :} Procédures détaillées de basculement (PRA).
+    \item \textbf{Annuaire de Crise :} Numéros de téléphone internes/externes (Délégués, Pompiers, CNIL, Assureurs).
+\end{itemize}
+
+\subsection{Organisation de la Cellule de Crise}
+
+Le PCA définit qui prend les décisions. L'organisation type comprend :
+
+\begin{itemize}
+    \item \textbf{Cellule de Décision (Stratégique) :} PDG, DAF. Décide de la stratégie (arrêter l'activité, basculer, communiquer).
+    \item \textbf{Cellule Opérationnelle (Technique) :} DSI, RSSI. Exécute le PRA (reprise informatique).
+    \item \textbf{Cellule de Communication :} DRH, Marketing. Gère la communication interne et externe.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Étape 2 : Simulation - Scénario "Ransomware Majeur"}
+% ------------------------------------------------------------------------------
+
+\begin{boxlizbiz}
+\textbf{Scénario :}
+Nous sommes le vendredi 13 à 10h00. L'attaque par Ransomware imaginée au Module 1 vient de se produire.
+\begin{itemize}
+    \item Tous les serveurs (ERP, Web, BDD) sont chiffrés.
+    \item Les sauvegardes locales (sur le NAS du bureau) sont également chiffrées (le ransomware s'est propagé sur le réseau).
+    \item Seule sauvegarde saine : Une bande magnétique externe envoyée hier soir chez un tiers-archiveur (Iron Mountain), ou une sauvegarde Cloud déconnectée.
+    \item \textbf{Conséquence :} Le SI est totalement indisponible. L'entrepôt est à l'arrêt.
+\end{itemize}
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Phase Pratique : Réaction et Bascule}
+% ------------------------------------------------------------------------------
+
+Les étudiants, répartis en groupes (Cellule de Crise), doivent accomplir les tâches suivantes.
+
+\subsection{Mission 1 : Activation de la Cellule de Crise (15 min)}
+
+\textbf{Livrable :} Fiche d'activation.
+\begin{itemize}
+    \item Qui est le Chef de Crise ? (Rôle : PDG).
+    \item Qui est le Responsable Technique ? (Rôle : DSI).
+    \item Rédiger un message court (SMS) pour convoquer la cellule en salle de crise.
+\end{itemize}
+
+\subsection{Mission 2 : Mise en œuvre du PRA (Technique) (45 min)}
+
+Le groupe "Technique" doit travailler sur le rétablissement.
+
+\textbf{Tâches :}
+\begin{enumerate}
+    \item \textbf{Commande de la sauvegarde :} Appeler le tiers-archiveur (simulé par un étudiant "Acteur") pour demander la restitution de la dernière bande de sauvegarde. Délai annoncé : 4 heures.
+    \item \textbf{Préparation de la restauration (Lab GNS3) :}
+    \begin{itemize}
+        \item Accéder au serveur de backup distant (simulé) via le lab.
+        \item Vérifier l'intégrité de la sauvegarde (Calcul Hash).
+        \item Identifier la procédure de restauration de la Base de Données PostgreSQL.
+    \end{itemize}
+    \item \textbf{Estimation du RTO :} Calculer le temps total avant le retour à la normale (Temps de livraison bande + Temps de restauration + Temps de vérification). Comparer avec le RTO défini au chapitre 4.
+\end{enumerate}
+
+\subsection{Mission 3 : Mise en œuvre du PCA (Métier) (30 min)}
+
+Le SI étant mort pour plusieurs heures, le business doit continuer (Mode Dégradé).
+
+\textbf{Tâches :}
+\begin{enumerate}
+    \item \textbf{Procédure de Secours :} Proposer un processus de prise de commande manuelle pour les clients qui appellent par téléphone.
+    \begin{itemize}
+        \item Outils : Papier, Crayon, Terminal de paiement portable (TPE) autonome.
+        \item Données : Fiche "Bon de Commande Manuel" à remplir.
+    \end{itemize}
+    \item \textbf{Rattrapage :} Comment réintégrer ces commandes manuelles dans l'ERP une fois le système restauré ?
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Étape 3 : Communication de Crise}
+% ------------------------------------------------------------------------------
+
+\subsection{Rédaction de Communiqués}
+
+La transparence est obligatoire.
+
+\begin{enumerate}
+    \item \textbf{Communiqué Interne :} Rassurer les salariés, dire qu'il ne faut pas utiliser l'informatique, expliquer le mode dégradé.
+    \item \textbf{Communiqué Externe (Clients) :} Informer d'une panne technique, s'excuser du retard, assurer que les données sont sécurisées (ne jamais dire "Nous nous sommes fait pirater" sans validation juridique, dire "Incident technique" dans un premier temps).
+\end{enumerate}
+
+\begin{boxalert}
+\textbf{Interdiction absolue :} Ne jamais communiquer sur le montant d'une rançon demandée ni sur les négociations. C'est illégal et dangereux.
+\end{boxalert}
+
+% ------------------------------------------------------------------------------
+\section{Étape 4 : Retour à la Normale et RETEX}
+% ------------------------------------------------------------------------------
+
+\subsection{Clôture de la Crise}
+
+Une fois la sauvegarde restaurée sur le Lab :
+\begin{itemize}
+    \item Vérifier la cohérence des données.
+    \item Réouvrir l'accès aux utilisateurs progressivement.
+    \item Communiquer sur la fin de l'incident.
+\end{itemize}
+
+\subsection{Le RETEX (Retour d'Expérience)}
+
+\begin{boxlizbiz}
+\textbf{Atelier final :} Organiser une réunion de debriefing (RETEX).
+\begin{itemize}
+    \item \textbf{Ce qui a marché :} La sauvegarde externe était saine.
+    \item \textbf{Ce qui a échoué :} Le NAS local a été chiffré (Délai de restauration trop long).
+    \item \textbf{Plan d'Amélioration :} Mettre en place des sauvegardes immuables (WORM - Write Once Read Many) sur le Cloud pour réduire le RTO de 8h à 2h.
+\end{itemize}
+\end{boxlizbiz}
+
+% ==============================================================================
+% Fichier : 04_module_incident.tex (Extrait Chapitre 6)
+% Description : Evaluation du Module 3
+% ==============================================================================

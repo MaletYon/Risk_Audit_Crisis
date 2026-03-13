@@ -1,0 +1,137 @@
+\chapter{Le Retour d'Expérience (RETEX)}
+\label{chap:retex}
+
+La crise est terminée, le système est restauré et la communication s'est apaisée. Pourtant, le travail n'est pas fini. La dernière étape, souvent négligée par fatigue, est la plus importante pour l'avenir : le Retour d'Expérience (RETEX). C'est l'essence même de l'amélioration continue.
+
+\section{Présentation : Boucler la Boucle PDCA}
+% ------------------------------------------------------------------------------
+
+\subsection{Définition}
+
+\begin{boxdef}
+\textbf{RETEX (Retour d'Expérience) :} Processus structuré visant à analyser un événement passé pour en tirer des enseignements (leçons) et mettre en œuvre des actions correctives afin d'améliorer la sécurité et la résilience de l'organisation.
+\end{boxdef}
+
+Sans RETEX, l'entreprise est condamnée à revivre la même crise de la même manière. C'est le moment où l'on transforme l'échec en capital d'expérience.
+
+\subsection{Le but : Passer de l'Identifié à l'Appris}
+
+Il existe une différence majeure entre une leçon identifiée et une leçon apprise.
+\begin{itemize}
+    \item \textbf{Leçon Identifiée :} "Nous avons vu que le plan de sauvegarde n'était pas testé." (Constat).
+    \item \textbf{Leçon Apprise :} "Nous avons mis en place des tests de sauvegarde mensuels obligatoires." (Action).
+\end{itemize}
+
+Le RETEX n'est valide que s'il débouche sur des actions concrètes.
+
+% ------------------------------------------------------------------------------
+\section{Les Deux Phases du RETEX}
+% ------------------------------------------------------------------------------
+
+\subsection{RETEX à Chaud (Hotwash)}
+
+\begin{boxdef}
+\textbf{RETEX à Chaud :} Réunion de debriefing organisée très rapidement après la fin de la crise (J+1 à J+3), alors que les souvenirs sont frais.
+\end{boxdef}
+
+\textbf{Objectifs :}
+\begin{itemize}
+    \item Recueillir les faits et les ressenti immédiats.
+    \item Féliciter les équipes (reconnaissance du travail fourni).
+    \item Identifier les problèmes bloquants évidents.
+    \item Clore symboliquement la période de crise pour le personnel.
+\end{itemize}
+
+C'est souvent une réunion "débriefing" sans prise de notes formelle excessive, mais avec un compte-rendu rapide.
+
+\subsection{RETEX à Froid (Coldwash)}
+
+\begin{boxdef}
+\textbf{RETEX à Froid :} Analyse approfondie réalisée plusieurs semaines après la crise (J+30 à J+60), avec du recul et l'accès à toutes les données techniques (logs, rapports d'audit).
+\end{boxdef}
+
+\textbf{Objectifs :}
+\begin{itemize}
+    \item Analyser les causes racines (Pourquoi ça a commencé ?).
+    \item Analyser la gestion de la crise (Pourquoi a-t-on réagi comme ça ?).
+    \item Mettre à jour les documents (PCA, PRA, Plans de crise).
+    \item Définir le plan d'investissement futur.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Outils d'Analyse : Comprendre le "Pourquoi"}
+% ------------------------------------------------------------------------------
+
+Pour éviter que l'incident ne se reproduise, il faut chercher la \textbf{Cause Racine} (Root Cause), et pas seulement la cause immédiate.
+
+\subsection{La Chronologie (Timeline)}
+
+Reconstituer la frise chronologique précise :
+\begin{itemize}
+    \item Heure de l'intrusion.
+    \item Heure de la détection.
+    \item Heure de la prise de conscience.
+    \item Heure de la communication.
+\end{itemize}
+
+L'écart entre l'intrusion et la détection est souvent le point critique à améliorer.
+
+\subsection{La méthode des "5 Pourquois" (5 Whys)}
+
+Technique simple pour descendre en profondeur.
+
+\begin{boxlizbiz}
+\textbf{Exemple LiZbiZ :}
+\begin{enumerate}
+    \item \textbf{Pourquoi} l'ERP a-t-il été chiffré ? \textit{Car le Ransomware s'est propagé.}
+    \item \textbf{Pourquoi} s'est-il propagé ? \textit{Car le VLAN IoT n'était pas isolé.}
+    \item \textbf{Pourquoi} n'était-il pas isolé ? \textit{Car la règle firewall était en "Allow All".}
+    \item \textbf{Pourquoi} "Allow All" ? \textit{Car un technicien avait ouvert le flux pour un test et a oublié de le refermer.}
+    \item \textbf{Pourquoi} a-t-il oublié ? \textit{Car il n'y a pas de procédure de validation des règles firewall (Cause Racine).}
+\end{enumerate}
+\textbf{Action :} Mettre en place une revue mensuelle des règles firewall.
+\end{boxlizbiz}
+
+\subsection{Le Diagramme d'Ishikawa (Causes et Effets)}
+
+Outil visuel pour classer les causes par familles (5M : Méthodes, Main d'œuvre, Matériel, Milieu, Matière).
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Le Rapport Final}
+% ------------------------------------------------------------------------------
+
+\subsection{Mission : Rédiger le Rapport RETEX}
+
+\begin{boxlizbiz}
+\textbf{Contexte :} Un mois après la crise du Ransomware et de la fuite de données. L'entreprise tourne à nouveau normalement. Vous êtes chargé par le COMEX de produire le rapport de synthèse.
+\end{boxlizbiz}
+
+\textbf{Structure du rapport à produire (Travail de synthèse) :}
+
+\begin{enumerate}
+    \item \textbf{Résumé de l'incident :} Faits majeurs et impacts financiers/image.
+    \item \textbf{Analyse des Causes Racines :} Résultat de l'enquête technique (Logs, Forensics).
+    \item \textbf{Bilan de la Réponse :}
+    \begin{itemize}
+        \item \textbf{Points Forts :} Ce qui a fonctionné (ex: Synchronisation des sauvegardes externes, mobilisation des équipes).
+        \item \textbf{Points Faibles :} Ce qui a échoué (ex: Temps de détection trop long, confusion dans la communication interne, absence de plan spécifique Ransomware).
+    \end{itemize}
+    \item \textbf{Plan d'Amélioration :}
+    \begin{itemize}
+        \item \textbf{Court terme (1 mois) :} Isoler les réseaux, changer les mots de passe.
+        \item \textbf{Moyen terme (6 mois) :} Déployer un EDR (Endpoint Detection and Response), former le CSIRT.
+        \item \textbf{Long terme (1 an) :} Obtenir la certification ISO 27001.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Clôture du Cours}
+
+Ce rapport RETEX finalise le cycle de vie de la sécurité vu dans ce cours :
+\begin{center}
+\textbf{Gouvernance $\rightarrow$ Risque $\rightarrow$ Audit $\rightarrow$ Incident $\rightarrow$ Crise $\rightarrow$ RETEX $\rightarrow$ Gouvernance (Améliorée)}
+\end{center}
+
+% ==============================================================================
+% Fichier : 05_module_crise.tex (Extrait Chapitre 6)
+% Description : Evaluation du Module 4
+% ==============================================================================

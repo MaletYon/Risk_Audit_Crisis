@@ -1,0 +1,184 @@
+\chapter{Introduction à la Gouvernance de la Sécurité}
+\label{chap:gouvernance}
+
+\section{Présentation : De la Technique à la Gouvernance}
+
+\subsection{Définition de la Gouvernance du SI}
+
+La \textbf{Gouvernance du Système d'Information (SI)} désigne l'ensemble des processus, structures et relations qui permettent de diriger et de contrôler l'utilisation des technologies de l'information pour atteindre les objectifs de l'entreprise.
+
+\begin{boxdef}
+\textbf{Gouvernance vs Management :}
+\begin{itemize}
+    \item \textbf{Gouvernance :} Définir les objectifs, allouer les ressources, surveiller la performance (Le "Pourquoi" et le "Comment"). C'est le rôle de la direction.
+    \item \textbf{Management :} Mettre en œuvre les décisions, exécuter les processus opérationnels (Le "Quoi" et le "Quand"). C'est le rôle des équipes techniques.
+\end{itemize}
+\end{boxdef}
+
+\subsection{Sécurité Technique vs Gouvernance de la Sécurité}
+
+Il existe une confusion fréquente entre la sécurité technique et la gouvernance de la sécurité.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{4cm}p{4cm}}
+    \toprule
+    \textbf{Sécurité Technique} & \textbf{Gouvernance de la Sécurité} \\
+    \midrule
+    Installer un pare-feu & Décider de la politique de filtrage \\
+    Appliquer un patch & Valider le processus de mise à jour \\
+    Chiffrer un disque & Définir la classification des données \\
+    Résoudre un incident & Analyser l'impact business de l'incident \\
+    \bottomrule
+\end{tabular}
+\caption{Comparaison Approche Technique vs Gouvernance}
+\end{table}
+
+La gouvernance assure que les investissements en sécurité technique apportent une valeur réelle à l'entreprise et réduisent les risques métiers.
+
+% ------------------------------------------------------------------------------
+\section{Concepts Clés}
+% ------------------------------------------------------------------------------
+
+\subsection{Alignement Stratégique}
+
+La sécurité ne doit pas être un frein mais un facilitateur. L'\textbf{alignement stratégique} consiste à garantir que les objectifs de sécurité soutiennent directement les objectifs métier.
+
+\begin{boxlizbiz}
+\textbf{Exemple LiZbiZ :} L'objectif stratégique de LiZbiZ est la "Livraison en 24h".
+\begin{itemize}
+    \item \textbf{Mauvais alignement :} Un système d'authentification trop complexe ralentit la validation des commandes par les logisticiens.
+    \item \textbf{Bon alignement :} Une authentification forte (carte à puce) rapide pour les logisticiens, garantissant la traçabilité sans perte de temps.
+\end{itemize}
+\end{boxlizbiz}
+
+\subsection{Culture de Sécurité}
+
+La \textbf{culture de sécurité} représente l'ensemble des valeurs, croyances et comportements partagés concernant la sécurité au sein de l'organisation. C'est le facteur humain.
+
+\begin{boxdef}
+\textbf{Constat :} 90\% des incidents de sécurité impliquent une erreur humaine (phishing, mot de passe faible, perte de matériel). La technique seule ne suffit pas.
+\end{boxdef}
+
+\subsection{Responsabilité et Redevabilité (Accountability)}
+
+C'est le concept le plus critique en gouvernance.
+
+\begin{itemize}
+    \item \textbf{Responsabilité (Responsibility) :} L'obligation d'accomplir une tâche. On est responsable "de faire".
+    \item \textbf{Redevabilité (Accountability) :} L'obligation de répondre des conséquences de ses actes ou de ceux de ses subordonnés. On est redevable "du résultat". On ne peut pas déléguer sa redevabilité.
+\end{itemize}
+
+\begin{boxlizbiz}
+\textbf{Chez LiZbiZ :}
+L'administrateur système est \textit{responsable} de l'installation du pare-feu. Le Directeur Général (PDG) est \textit{redevable} (Accountable) devant les actionnaires si une fuite de données massive survient. Il ne peut pas dire "ce n'est pas ma faute, c'est celle de l'informaticien".
+\end{boxlizbiz}
+
+\subsection{La Matrice RACI}
+
+Pour éviter la confusion entre "faire" et "décider", on utilise la matrice RACI. C'est un outil de répartition des rôles.
+
+\subsubsection{Définition des acronymes}
+
+\begin{itemize}
+    \item \textbf{R (Responsible) :} La personne qui réalise la tâche. Il peut y en avoir plusieurs.
+    \item \textbf{A (Accountable) :} Le décideur ultime. Il "signe" le résultat. Il y en a \textbf{un seul} par tâche (principe de l'unique tête de file).
+    \item \textbf{C (Consulted) :} Les experts sollicités pour leur avis avant la décision (communication à double sens).
+    \item \textbf{I (Informed) :} Les personnes informées du résultat (communication à sens unique).
+\end{itemize}
+
+\subsubsection{Application : Processus de Gestion des Accès chez LiZbiZ}
+
+Chez LiZbiZ, le processus de création de compte pour un nouvel employé est critique. Voici comment les rôles devraient être répartis :
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lcccc}
+    \toprule
+    \textbf{Activité} & \textbf{Resp. RH} & \textbf{DSI} & \textbf{RSSI} & \textbf{Nouvel Employé} \\
+    \midrule
+    Déclaration de l'arrivée & R & I & I & - \\
+    Définition des droits nécessaires & C & C & A & - \\
+    Création du compte Active Directory & I & R & A & I \\
+    Remise des identifiants & I & R & I & I \\
+    Signature de la charte informatique & I & I & I & R \\
+    \bottomrule
+\end{tabular}
+\caption{Matrice RACI pour l'embauche chez LiZbiZ}
+\end{table}
+
+\begin{boxalert}
+\textbf{Risque identifié LiZbiZ :} Actuellement, aucun RSSI n'est nommé (Poste vacant). La case "A" (Accountable) pour la définition des droits est vide. Le DSI fait "au mieux". C'est un risque majeur de violation du principe du moindre privilège.
+\end{boxalert}
+
+% ------------------------------------------------------------------------------
+\section{Jargon et Acteurs de la Gouvernance}
+% ------------------------------------------------------------------------------
+
+\subsection{Le RSSI (Responsable de la Sécurité des Systèmes d'Information)}
+
+\begin{boxdef}
+\textbf{RSSI} : Acronyme de \textit{Responsable de la Sécurité des Systèmes d'Information}. Son rôle est de définir la politique de sécurité, de sensibiliser les équipes et de superviser la mise en œuvre des mesures. Il est le point focal de la sécurité.
+\end{boxdef}
+
+Il ne fait pas forcément de technique "pure" (ce n'est pas un "hacker"), mais il pilote le risque. Il rapporte souvent directement à la Direction Générale.
+
+\subsection{Le DPO (Data Protection Officer)}
+
+\begin{boxdef}
+\textbf{DPO} : Acronyme de \textit{Data Protection Officer} (en français : Délégué à la Protection des Données).
+Rôle désigné par le RGPD (Règlement Général sur la Protection des Données). Il veille au respect de la vie privée et des libertés numériques.
+\end{boxdef}
+
+\textbf{Différence RSSI / DPO :} Le RSSI protège le système (disponibilité, intégrité). Le DPO protège les données personnelles des individus (confidentialité, consentement).
+
+\subsection{Le COMEX (Comité Exécutif)}
+
+\begin{boxdef}
+\textbf{COMEX} : Comité restreint des principaux dirigeants de l'entreprise (PDG, DAF, DSI, DRH...). C'est l'instance de décision stratégique.
+\end{boxdef}
+
+Le RSSI doit présenter régulièrement l'état de la sécurité au COMEX pour valider les budgets et les arbitrages de risque.
+
+\subsection{Le Comité de Sécurité (CS)}
+
+C'est une réunion opérationnelle, souvent mensuelle, rassemblant le RSSI, le DSI, des représentants métiers et juridiques. Contrairement au COMEX, le Comité de Sécurité traite des sujets techniques et opérationnels (suivi des incidents, avancement des projets).
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Analyse de la Structure Actuelle}
+% ------------------------------------------------------------------------------
+
+\subsection{Organigramme et Lacunes}
+
+LiZbiZ a connu une croissance rapide (de 20 à 150 employés en 2 ans). La structure de gouvernance n'a pas suivi.
+
+\textbf{État des lieux :}
+\begin{itemize}
+    \item \textbf{Direction Générale (Jean-Pierre L.) :} Focus sur le business, peu sensible à la cybersécurité.
+    \item \textbf{Direction des Systèmes d'Information (Sophie M.) :} Gère l'équipe technique (20 personnes). Elle cumule les casquettes de DSI et de RSSI par défaut.
+    \item \textbf{Poste de RSSI :} \textbf{VACANT}. Le recrutement est en cours.
+\end{itemize}
+
+\subsection{Analyse Critique}
+
+Cette situation pose plusieurs problèmes structurels :
+
+\begin{enumerate}
+    \item \textbf{Conflit d'intérêt :} La DSI est juge et partie. Elle valide les accès qu'elle crée elle-même. Le contrôle interne est inexistant.
+    \item \textbf{Manque de visibilité :} Pas de Comité de Sécurité. La Direction Générale n'est pas informée des risques techniques.
+    \item \textbf{Absence de RACI formel :} Les processus de sécurité sont gérés "à l'oral", ce qui engendre des oublies et des erreurs.
+\end{enumerate}
+
+\subsection{Travaux Pratiques : Première Mission}
+
+\begin{boxlizbiz}
+\textbf{Votre mission en tant que consultants :}
+Pour le prochain Comité de Direction, vous devez proposer une \textbf{charte de gouvernance} simple. Elle doit définir clairement le rôle du futur RSSI et mettre en place un RACI pour la gestion des incidents critiques.
+\end{boxlizbiz}
+
+
+% ==============================================================================
+% Fichier : 02_module_risque.tex (Extrait Chapitre 2)
+% Description : Le Vocabulaire Fondamental du Risque
+% ==============================================================================

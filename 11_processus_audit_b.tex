@@ -1,0 +1,182 @@
+\chapter{Le Processus d'Audit (ISO 19011)}
+\label{chap:procauditb}
+
+La norme \textbf{ISO 19011} fournit les lignes directrices pour auditer les systèmes de management. C'est la "bible" de l'auditeur, décrivant étape par étape comment mener une mission.
+
+\section{Présentation de l'ISO 19011}
+
+\subsection{Définition et Champ d'Application}
+
+\begin{boxdef}
+\textbf{ISO 19011} : Norme internationale intitulée "Lignes directrices pour l'audit des systèmes de management". Elle s'applique à tous les types d'audits (Qualité ISO 9001, Sécurité ISO 27001, Environnement ISO 14001, etc.).
+\end{boxdef}
+
+Elle définit les principes d'audit (Intégrité, Présentation équitable, Devoir de vigilance, Confidentialité, Indépendance, Approche fondée sur la preuve) et le processus complet.
+
+\subsection{Vue d'ensemble du Processus}
+
+Le processus d'audit est cyclique. La norme (Section 6) le divise en plusieurs phases séquentielles :
+\begin{enumerate}
+    \item Déclenchement de l'audit.
+    \item Préparation des activités d'audit.
+    \item Réalisation des activités d'audit.
+    \item Préparation et distribution du rapport.
+    \item Clôture et suivi.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Phase 1 : Déclenchement de l'Audit (ISO 19011, Section 6.2)}
+% ------------------------------------------------------------------------------
+
+Cette phase est administrative mais cruciale pour cadrer la mission.
+
+\subsection{Établissement du contact initial}
+
+L'auditeur rencontre le commanditaire pour définir les objectifs.
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} Le commanditaire est le PDG. L'objectif n'est pas de "piéger la DSI", mais de "mesurer l'écart par rapport à l'ISO 27001" pour préparer la certification.
+\end{boxlizbiz}
+
+\subsection{Détermination de la faisabilité}
+
+L'auditeur vérifie s'il a les ressources nécessaires :
+\begin{itemize}
+    \item Accès aux documents ?
+    \item Disponibilité du personnel clé ?
+    \item Temps imparti suffisant ?
+\end{itemize}
+
+\subsection{Constitution de l'équipe d'audit}
+
+Pour LiZbiZ, l'équipe sera constituée d'un \textbf{Auditeur Principal} (l'étudiant chef de projet) et d'\textbf{Auditeurs Techniques} (les autres étudiants).
+
+% ------------------------------------------------------------------------------
+\section{Phase 2 : Préparation de l'Audit (ISO 19011, Section 6.3)}
+% ------------------------------------------------------------------------------
+
+C'est le travail "de bureau" avant d'aller sur le terrain.
+
+\subsection{Revue documentaire (Pré-audit)}
+
+L'auditeur lit les documents existants pour préparer sa grille de vérification.
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} Vous demandez à consulter la "Politique de Sécurité" et "La procédure de gestion des accès". Si ces documents n'existent pas, c'est déjà une Non-Conformité potentielle identifiée avant même de commencer.
+\end{boxlizbiz}
+
+\subsection{Plan d'Audit (Audit Plan)}
+
+C'est le document contractuel validé par l'audité. Il précise le "Qui, Quoi, Où, Quand".
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{Date / Heure} & \textbf{Activité} & \textbf{Auditeur} & \textbf{Audité} \\
+    \hline
+    09h00 - 09h30 & Réunion d'ouverture & Chef d'équipe & DSI + Equipe \\
+    \hline
+    09h30 - 11h00 & Audit technique (Pare-feu, Logs) & Auditeur Tech & Admin Sys \\
+    \hline
+    11h00 - 12h30 & Audit organisationnel (RH) & Auditeur Orga & DRH \\
+    \hline
+    14h00 - 15h00 & Synthèse équipe & Équipe complète & - \\
+    \hline
+    15h00 - 16h00 & Réunion de clôture & Chef d'équipe & DSI + PDG \\
+    \hline
+\end{tabular}
+\caption{Extrait du Plan d'Audit LiZbiZ}
+\end{table}
+
+\subsection{Feuille de Route (Checklist)}
+
+C'est l'outil de travail de l'auditeur sur le terrain. Elle liste les questions à poser et les points à vérifier.
+
+\begin{boxdef}
+\textbf{Checklist (Feuille de route) :} Document détaillé traduisant les exigences de la norme (ex: ISO 27001) en questions fermées ou ouvertes.
+\end{boxdef}
+
+Exemple de checklist pour l'ISO 27001 Annexe A.9 (Contrôle d'accès) :
+\begin{itemize}
+    \item \textit{Question :} "Montrez-moi la liste des utilisateurs ayant des privilèges administrateurs."
+    \item \textit{Question :} "Comment procédez-vous lors du départ d'un collaborateur ?"
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Phase 3 : Réalisation de l'Audit (ISO 19011, Section 6.4)}
+% ------------------------------------------------------------------------------
+
+C'est le moment de la vérité, sur le terrain (ou dans le lab GNS3).
+
+\subsection{Réunion d'Ouverture (Opening Meeting)}
+
+C'est une réunion formelle pour confirmer le plan.
+\textbf{Ordre du jour type :}
+\begin{itemize}
+    \item Présentation des participants.
+    \item Rappel du périmètre et des objectifs.
+    \item Confirmation des ressources et accès.
+    \item Rappel des règles de confidentialité.
+\end{itemize}
+
+\subsection{Collecte et Vérification des Informations}
+
+L'auditeur collecte des preuves par trois moyens (Technique des 3 "E") :
+\begin{enumerate}
+    \item \textbf{Entretiens :} Questionner le personnel.
+    \item \textbf{Examen documentaire :} Lire les procédures, regarder les logs.
+    \item \textbf{Observation :} Regarder les activités réelles (ex: voir si l'écran est verrouillé).
+\end{enumerate}
+
+\begin{boxalert}
+\textbf{Règle de l'échantillonnage :} L'auditeur ne peut pas tout vérifier. Il sélectionne des échantillons (ex: 5 comptes utilisateurs au hasard sur 100). Si 2 sur 5 sont mal gérés, il conclura à une anomalie généralisée.
+\end{boxalert}
+
+\subsection{Réunion de Clôture (Closing Meeting)}
+
+À la fin de l'audit, l'équipe présente ses conclusions à l'audité.
+\begin{itemize}
+    \item C'est un moment de communication délicate.
+    \item On présente les constats (faits objectifs).
+    \item On annonce les Non-Conformités (NC).
+    \item On ne donne pas encore les recommandations (ce n'est pas le rôle de l'auditeur de faire le travail de l'audité, sauf audit interne conseil).
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Phase 4 et 5 : Rapport et Suivi (ISO 19011, Sections 6.5 à 6.7)}
+% ------------------------------------------------------------------------------
+
+\subsection{Le Rapport d'Audit}
+
+Il doit être clair, complet et factuel. Il contient :
+\begin{itemize}
+    \item Le périmètre et les objectifs.
+    \item Le déroulement de l'audit.
+    \item Les conclusions (Forces, Faiblesses).
+    \item Les Non-Conformités détaillées (Exigence non satisfaite + Preuve).
+\end{itemize}
+
+\subsection{Le Suivi (Follow-up)}
+
+L'audit ne s'arrête pas au rapport. L'audité doit mettre en place des actions correctives. L'auditeur doit vérifier l'efficacité de ces actions (souvent lors d'un audit de suivi ultérieur).
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Simulation des Réunions}
+% ------------------------------------------------------------------------------
+
+\subsection{Exercice de Simulation (Jeu de rôle)}
+
+\begin{boxlizbiz}
+\textbf{Mise en situation :}
+Les étudiants se répartissent les rôles : Auditeurs vs Audités (DSI, Admin Sys, RH).
+
+\textbf{Scénario Réunion d'Ouverture :}
+Les auditeurs doivent présenter le plan d'audit. L'Admin Sys (joué par un étudiant) tente de refuser l'accès aux logs en disant "C'est trop sensible, vous allez casser le système".
+\textbf{Réponse attendue :} L'auditeur doit rappeler le mandat du PDG et les règles de l'audit (non-modification du système).
+\end{boxlizbiz}
+% ==============================================================================
+% Fichier : 03_module_audit.tex (Extrait Chapitre 3)
+% Description : Référentiels et Critères d'Évaluation
+% ==============================================================================

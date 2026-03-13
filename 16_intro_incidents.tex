@@ -1,0 +1,150 @@
+\chapter{Introduction à la Gestion des Incidents}
+\label{chap:introincidents}
+
+Malgré toutes les mesures de sécurité (Prévention) et les vérifications (Audit), aucune organisation n'est infaillible. La question n'est plus "Est-ce que nous allons subir une attaque ?", mais "Quand allons-nous subir une attaque et comment réagir ?". Ce chapitre pose les bases de la réponse opérationnelle.
+
+\section{Présentation : La Nécessité de Réagir}
+
+\subsection{De la Sécurité Préventive à la Sécurité Curative}
+
+Jusqu'ici, nous avons travaillé sur la prévention (analyse de risque, mesures de sécurité, audits). Cependant, le "Risque Résiduel" (Module 1) implique que des incidents surviendront.
+
+La capacité à détecter et réagir efficacement est ce qui différencie une entreprise résiliente d'une entreprise qui disparaît suite à une cyberattaque.
+
+\subsection{La Pyramide de l'Événement}
+
+Il est crucial de distinguer les concepts pour ne pas noyer les équipes sous de fausses alertes.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+    % Triangle inversé
+    \node[draw, isosceles triangle, isosceles triangle apex angle=30, 
+          minimum height=6cm, minimum width=8cm, 
+          shape border rotate=90, draw=black, fill=gray!10] at (0,0) {};
+    
+    % Labels
+    \node at (0, 2.5) {\textbf{Crise}};
+    \node at (0, 1) {\textbf{Incident}};
+    \node at (0, -1) {\textbf{Événement}};
+    
+    % Annotations
+    \node[right] at (5, 2.5) {Impact Majeur / Existence en jeu};
+    \node[right] at (5, 1) {Impact Réel / Mesures requises};
+    \node[right] at (5, -1) {Observation brute / Neutre};
+\end{tikzpicture}
+\caption{Pyramide Événement, Incident, Crise}
+\end{figure}
+
+\begin{boxdef}
+\begin{itemize}
+    \item \textbf{Événement (Event) :} Un changement d’état observé dans un système. La majorité des événements sont normaux (ex: un utilisateur se connecte, un email arrive).
+    \item \textbf{Incident :} Un événement qui compromet réellement ou potentiellement la sécurité (Confidentialité, Intégrité, Disponibilité). Il nécessite une réponse.
+    \item \textbf{Crise :} Un incident dont l'impact dépasse la capacité de traitement opérationnel de l'entreprise et menace sa survie ou sa réputation.
+\end{itemize}
+\end{boxdef}
+
+\begin{boxlizbiz}
+\textbf{Exemples chez LiZbiZ :}
+\begin{itemize}
+    \item \textbf{Événement :} Un employé saisit son mot de passe. (Normal).
+    \item \textbf{Incident :} Un employé clique sur un lien de phishing et ses identifiants sont volés. (Nécessite une action immédiate : changement de mdp, analyse).
+    \item \textbf{Crise :} Le Ransomware se propage, l'ERP est inutilisable, la presse s'en empare. (Nécessite une cellule de crise).
+\end{itemize}
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Concepts Clés}
+% ------------------------------------------------------------------------------
+
+\subsection{Cycle de Vie de l'Incident}
+
+La gestion d'incident ne s'improvise pas. Elle suit un cycle standard (souvent inspiré du NIST SP 800-61) :
+
+\begin{enumerate}
+    \item \textbf{Détection et Analyse :} Repérer l'incident (Logs, Alerte utilisateur, Antivirus).
+    \item \textbf{Confinement :} Empêcher la propagation (Isolation réseau, Désactivation compte).
+    \item \textbf{Éradication :} Supprimer la cause (Supprimer malware, Patch faille).
+    \item \textbf{Rétablissement :} Remettre le système en marche (Restauration sauvegarde).
+    \item \textbf{Activités Post-Incident :} Retour d'expérience (RETEX), amélioration des défenses.
+\end{enumerate}
+
+\subsection{Impact Business vs Impact Technique}
+
+Un bon gestionnaire d'incident traduit l'impact technique en impact métier.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{4cm}p{4cm}}
+    \toprule
+    \textbf{Impact Technique} & \textbf{Impact Business (LiZbiZ)} \\
+    \midrule
+    "Le serveur Web est down" & "Les clients ne peuvent plus commander (Perte de 5k€/heure)". \\
+    "Fuite de la BDD Clients" & "Risque d'amende CNIL, perte de confiance, baisse du cours de bourse". \\
+    \bottomrule
+\end{tabular}
+\caption{Traduction Technique vers Business}
+\end{table}
+
+\subsection{Obligation de Reporting}
+
+Depuis le RGPD et la directive NIS, certaines infractions doivent être notifiées.
+
+\begin{boxdef}
+\textbf{Notification de violation de données (RGPD Art. 33) :} En cas de violation de données personnelles, l'entreprise dispose de \textbf{72 heures} pour notifier l'autorité de contrôle (CNIL en France), sous peine de sanction financière lourde.
+\end{boxdef}
+
+% ------------------------------------------------------------------------------
+\section{Jargon de la Gestion d'Incident}
+% ------------------------------------------------------------------------------
+
+\subsection{Alerte et Ticket}
+
+\begin{itemize}
+    \item \textbf{Alerte :} Signal automatique généré par un outil (SIEM, Antivirus) indiquant une anomalie potentielle.
+    \item \textbf{Ticket :} Enregistrement formel de l'incident dans un système de ticketing (Jira, GLPI, ServiceNow) pour le suivi.
+\end{itemize}
+
+\subsection{Faux Positif (False Positive)}
+
+\begin{boxdef}
+\textbf{Faux Positif :} Une alerte qui signale une menace alors qu'il n'y en a pas. C'est le fléau des équipes SOC (Security Operations Center). Un taux de faux positifs trop élevé épuise les analystes qui finissent par ignorer les vraies alertes.
+\end{boxdef}
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} L'antivirus signale un "comportement suspect" sur l'outil de caisse. Après vérification (Audit), on s'aperçoit que c'est une mise à jour logicielle légitime mal signée. C'est un Faux Positif.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Périmètre et Classification}
+% ------------------------------------------------------------------------------
+
+\subsection{Définition du Périmètre}
+
+Pour LiZbiZ, tout événement affectant la disponibilité du site e-commerce ou l'intégrité des données clients est considéré comme un incident de sécurité.
+
+\subsection{Exercice : Classification des Incidents}
+
+Proposez une classification (Critique, Haute, Basse) pour les incidents suivants chez LiZbiZ :
+
+\begin{enumerate}
+    \item Un employé a perdu sa badge d'accès au bâtiment.
+    \item Le serveur de base de données est inaccessible.
+    \item Une publicité pop-up suspecte apparaît sur un site web tiers visité par un employé.
+    \item Un email de phishing demandant les identifiants ERP est envoyé à tout le service comptabilité.
+\end{enumerate}
+
+\begin{boxlizbiz}
+\textbf{Proposition de solution :}
+\begin{itemize}
+    \item Badge perdu : \textbf{Basse} (Mesure : Désactiver le badge).
+    \item BDD inaccessible : \textbf{Critique} (Arrêt business).
+    \item Pop-up tiers : \textbf{Négligeable} (Pas d'impact direct sur le SI LiZbiZ).
+    \item Phishing comptabilité : \textbf{Haute} (Risque de fraude financière, nécessite une sensibilisation rapide et vérification des clics).
+\end{itemize}
+\end{boxlizbiz}
+
+% ==============================================================================
+% Fichier : 04_module_incident.tex (Extrait Chapitre 2)
+% Description : Le Processus de Gestion d'Incident (ISO 27035)
+% ==============================================================================

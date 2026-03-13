@@ -1,0 +1,131 @@
+\chapter{Organisation de la Cellule de Crise}
+\label{chap:cellulecrise}
+
+La première victime d'une crise est souvent la structure hiérarchique habituelle. Pour réagir vite, l'entreprise doit se structurer en une organisation temporaire, centralisée et souple : la Cellule de Crise.
+
+\section{Présentation : La Structure de Commandement}
+% ------------------------------------------------------------------------------
+
+\subsection{Le Principe de Centralisation}
+
+En temps de crise, on ne peut pas avoir plusieurs centres de décision qui se contredisent. Il faut un commandement unique. L'organisation se divise généralement en trois niveaux.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    box/.style={rectangle, draw, thick, fill=white, minimum width=4cm, minimum height=1cm, align=center}
+]
+    % Nodes
+    \node[box, fill=red!20] (strat) {Cellule Stratégique\\(Direction)};
+    \node[box, fill=orange!20, below left=of strat] (com) {Cellule Communication\\(Image)};
+    \node[box, fill=blue!20, below right=of strat] (op) {Cellule Opérationnelle\\(Technique)};
+    
+    % Arrows
+    \draw[->, thick] (strat) -- node[left, font=\scriptsize] {Consignes} (com);
+    \draw[->, thick] (strat) -- node[right, font=\scriptsize] {Consignes} (op);
+    \draw[->, thick, dashed] (op) -- node[below, font=\scriptsize] {Retours terrain} (strat);
+    \draw[->, thick, dashed] (com) -- node[below, font=\scriptsize] {Retours médias} (strat);
+\end{tikzpicture}
+\caption{Organisation type d'une Cellule de Crise}
+\end{figure}
+
+\subsection{Les Trois Niveaux}
+
+\begin{enumerate}
+    \item \textbf{Cellule Stratégique :} Le cerveau. Elle prend les décisions majeures (Arrêter l'activité ? Payer la rançon ? Demander la mise en liquidation ?). Elle est composée de la Direction Générale.
+    \item \textbf{Cellule Opérationnelle :} Les mains. Elle exécute les décisions sur le terrain (Technique, Logistique, Sécurité Physique). Elle remonte l'information factuelle.
+    \item \textbf{Cellule Communication :} La voix. Elle gère l'image et la diffusion de l'information (Presse, Clients, Réseaux Sociaux).
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Rôles et Responsabilités (Jargon)}
+% ------------------------------------------------------------------------------
+
+\subsection{Le Directeur de Crise}
+
+\begin{boxdef}
+\textbf{Directeur de Crise :} La personne qui anime la cellule de crise et tranche les arbitrages. Il a l'autorité ultime sur les ressources de l'entreprise pour la durée de la crise.
+\end{boxdef}
+
+C'est généralement le PDG ou le Directeur Général. Il doit être calme, décideur et protecteur de l'intérêt général de l'entreprise.
+
+\subsection{Le Porte-parole (Spokesperson)}
+
+\begin{boxdef}
+\textbf{Porte-parole :} Seule personne habilitée à s'exprimer officiellement auprès des médias et des parties prenantes externes.
+\end{boxdef}
+
+\begin{boxalert}
+\textbf{Règle d'Or :} Une seule voix ! Personne d'autre ne doit s'exprimer. Si un employé parle à la presse sans autorisation, il peut désinformé et aggraver la crise.
+\end{boxalert}
+
+\begin{boxlizbiz}
+\textbf{Dilemme LiZbiZ :}
+Le PDG est très charismatique mais panique facilement. La DSI est très technique mais austère.
+\textbf{Choix stratégique :} Le PDG assume le rôle de Porte-parole pour rassurer (Leadership), mais il est briefé en amont par la DSI sur les faits techniques précis.
+\end{boxlizbiz}
+
+\subsection{Le Scribe (Secrétaire de Crise)}
+
+Rôle souvent sous-estimé mais vital.
+
+\begin{boxdef}
+\textbf{Scribe :} Personne chargée de noter par écrit la chronologie des événements, les décisions prises, les actions lancées et les horaires exacts.
+\end{boxdef}
+
+Le cahier du Scribe constitue la preuve de la diligence de l'entreprise ("Nous avons réagi à 09h05"). C'est une pièce maîtresse en cas de procès futur.
+
+\subsection{La Salle de Crise}
+
+Lieu physique sécurisé où se réunit la cellule stratégique.
+\begin{itemize}
+    \item Doit être équipée (Téléphones, Projecteur, Tableaux, Alimentation électrique de secours).
+    \item Doit être isolée (Confidentialité des débats).
+    \item Peut être un "PC Mobile" si les locaux sont inaccessibles (ex: incendie).
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Mise en Place de l'Organigramme}
+% ------------------------------------------------------------------------------
+
+\subsection{Scénario : Activation de la Cellule}
+
+\begin{boxlizbiz}
+\textbf{Situation :} La fuite de données est confirmée. Le PDG décide d'activer le Plan de Gestion de Crise à 09h00.
+\end{boxlizbiz}
+
+\subsection{Travaux Pratiques : Constitution des Équipes}
+
+Les étudiants doivent répartir les rôles suivants au sein de la classe (ou en sous-groupes) :
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{3cm}p{5cm}p{4cm}}
+    \toprule
+    \textbf{Rôle} & \textbf{Profil / Compétence} & \textbf{Mission Immédiate} \\
+    \midrule
+    Directeur de Crise & PDG (Décideur). & Arbitrer la stratégie globale. \\
+    Porte-parole & Dir. Com. ou PDG. & Préparer le communiqué initial. \\
+    Scribe & Juriste ou Assistant. & Noter l'heure de chaque événement. \\
+    Animateur Technique & DSI / RSSI. & Faire le point sur l'étendue de la fuite. \\
+    \bottomrule
+\end{tabular}
+\caption{Tableau de répartition des rôles LiZbiZ}
+\end{table}
+
+\subsection{Exercice : La Première Réunion}
+
+\textbf{Consigne :} Simulez les 15 premières minutes de la réunion de crise.
+
+\begin{enumerate}
+    \item Le Directeur de Crise ouvre la séance.
+    \item La DSI fait un point situation (Ce qu'on sait, ce qu'on ne sait pas).
+    \item Le Scribe note : "09h05 - Confirmation fuite données santé. 09h07 - Décision d'appeler l'avocat."
+    \item Débat : Faut-il prévenir la CNIL tout de suite ou attendre d'en savoir plus ? (Réponse légale : Oui, délai de 72h).
+\end{enumerate}
+
+% ==============================================================================
+% Fichier : 05_module_crise.tex (Extrait Chapitre 3)
+% Description : Communication de Crise
+% ==============================================================================

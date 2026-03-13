@@ -1,0 +1,137 @@
+\chapter{La Simulation de Crise (Exercice Tabletop)}
+\label{chap:simcrise}
+
+La théorie est utile, mais la gestion de crise s'apprend par la pratique. Ce chapitre est dédié à un exercice de simulation de type \textbf{Tabletop} (exercice sur table). Il ne s'agit pas de tests techniques informatiques, mais de mise en situation des processus de décision et de communication.
+
+\section{Présentation de l'Exercice}
+% ------------------------------------------------------------------------------
+
+\subsection{Objectifs Pédagogiques}
+
+\begin{itemize}
+    \item Tester la montée en puissance de la Cellule de Crise.
+    \item Exercer la prise de décision sous pression et avec une information incomplète.
+    \item Pratiquer la coordination entre les cellules (Stratégique, Opérationnel, Communication).
+    \item Identifier les failles du Plan de Gestion de Crise (PGC).
+\end{itemize}
+
+\subsection{Mécanique du Jeu (Time Compression)}
+
+L'exercice se déroule sur 1h30 en classe, mais simule une journée de crise (24h).
+Le formateur joue le rôle du "Maître du Jeu" (Game Master) et injecte des événements (Twists) qui changent la donne.
+
+% ------------------------------------------------------------------------------
+\section{Phase 0 : Briefing et Attribution des Rôles (15 min)}
+% ------------------------------------------------------------------------------
+
+\subsection{Distribution des Rôles}
+
+Les étudiants sont répartis en sous-groupes ou jouent individuellement les rôles clés définis au Chapitre 2.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{4cm}p{8cm}}
+    \toprule
+    \textbf{Rôle (Étudiant)} & \textbf{Objectif Personnel} \\
+    \midrule
+    \textbf{PDG (Directeur de Crise)} & Préserver l'entreprise, trancher les arbitrages difficiles. \\
+    \textbf{DSI (Resp. Opérationnel)} & Restaurer le SI, fournir des faits techniques fiables. \\
+    \textbf{Dir. Com (Porte-parole)} & Protéger l'image, rédiger les communiqués. \\
+    \textbf{Juriste (DPO)} & Assurer la conformité (RGPD), protéger les dirigeants pénalement. \\
+    \textbf{DRH} & Gérer le stress interne, empêcher les fuites salariés. \\
+    \textbf{Scribe} & Noter la timeline exacte. \\
+    \bottomrule
+\end{tabular}
+\caption{Matrice des rôles pour le Tabletop}
+\end{table}
+
+\subsection{Contexte Initial}
+
+Le Maître du Jeu lit l'introduction :
+\begin{quote}
+"Nous sommes vendredi 17h00. LiZbiZ s'apprête à fermer pour le week-end. Soudain, le téléphone du DSI sonne : tous les écrans de l'entrepôt affichent un message rouge 'Your files are encrypted'. Le téléphone du standard commence à sonner : un client tweet qu'il a reçu un email de rançon avec ses données personnelles en pièce jointe."
+\end{quote}
+
+% ------------------------------------------------------------------------------
+\section{Phase 1 : La Réaction Immédiate (20 min)}
+% ------------------------------------------------------------------------------
+
+\textbf{Temps simulé :} Vendredi 17h15.
+
+\subsection{Consignes pour les équipes}
+\begin{itemize}
+    \item \textbf{Stratégie :} Décidez-vous d'éteindre les serveurs ? Prévenez-vous la police ?
+    \item \textbf{Communication :} Que dites-vous aux employés qui rentrent chez eux ?
+    \item \textbf{Opérationnel :} Quels sont les premiers diagnostics ?
+\end{itemize}
+
+\subsection{Injection d'Événement (Twist 1)}
+Le Maître du Jeu annonce :
+\begin{quote}
+"Un journaliste du 'Figaro' appelle le standard. Il a connaissance de la rançon et demande si LiZbiZ a l'intention de payer. La réponse est attendue dans 10 minutes."
+\end{quote}
+
+% ------------------------------------------------------------------------------
+\section{Phase 2 : L'Escalade (20 min)}
+% ------------------------------------------------------------------------------
+
+\textbf{Temps simulé :} Vendredi 20h00.
+
+\subsection{Injection d'Événement (Twist 2)}
+\begin{quote}
+"La CNIL appelle la direction. Ils ont été alertés par un collectif de défense des consommateurs. Ils demandent le rapport de violation complet pour lundi matin."
+\end{quote}
+
+\subsection{Consignes pour les équipes}
+\begin{itemize}
+    \item \textbf{Juridique :} Que répondez-vous à la CNIL ? Avez-vous toutes les infos requises (Article 33 RGPD) ?
+    \item \textbf{Technique :} L'attaquant a-t-il accédé les données de santé (risque élevé) ou juste les noms ?
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Phase 3 : La Tempête Médiatique (20 min)}
+% ------------------------------------------------------------------------------
+
+\textbf{Temps simulé :} Samedi 10h00.
+
+\subsection{Injection d'Événement (Twist 3)}
+\begin{quote}
+"Le hashtag \#LiZbiZDataLeak est en tendance sur Twitter (X). Une fausse rumeur circule : 'La banque de LiZbiZ a fait faillite, tout l'argent est bloqué'. Les clients paniquent et demandent des remboursements massifs."
+\end{quote}
+
+\subsection{Consignes pour les équipes}
+\begin{itemize}
+    \item \textbf{Communication :} Organisez une conférence de presse simulée (Questions/Réponses avec le reste de la classe jouant les journalistes).
+    \item \textbf{Stratégie :} Démentez-vous la rumeur bancaire ? Comment séparer le problème cyber du problème financier ?
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Phase 4 : Résolution et Debriefing (15 min)}
+% ------------------------------------------------------------------------------
+
+\textbf{Temps simulé :} Lundi 09h00. L'ERP est restauré à partir des sauvegardes saines.
+
+\subsection{Fin de l'Exercice}
+
+Le Maître du Jeu arrête le chronomètre. L'exercice s'arrête.
+
+\subsection{Le "Hotwash" (RETEX à chaud)}
+
+C'est le moment le plus important de l'apprentissage. On passe en revue ce qui s'est passé.
+
+\textbf{Questions de debriefing :}
+\begin{enumerate}
+    \item \textbf{Decision Making :} Les décisions ont-elles été prises rapidement ? Manquait-on d'informations ?
+    \item \textbf{Communication :} Le message a-t-il été cohérent ? A-t-on dit des choses contradictoires ?
+    \item \textbf{Rôles :} Le PDG a-t-il été débordé par la technique ? Le DSI a-t-il été trop long à diagnostiquer ?
+    \item \textbf{Leçons :} Qu'est-ce qu'on ferait différemment la prochaine fois ?
+\end{enumerate}
+
+\begin{boxalert}
+\textbf{Conclusion typique :} On réalise souvent que la Cellule de Crise a passé trop de temps à chercher des informations techniques précises (Qui ? Comment ?) et pas assez à gérer l'émotion des clients et des employés. La leçon : En crise, l'humain et la communication priment sur la technique pure.
+\end{boxalert}
+
+% ==============================================================================
+% Fichier : 05_module_crise.tex (Extrait Chapitre 5)
+% Description : Le Retour d'Expérience (RETEX)
+% ==============================================================================

@@ -1,0 +1,144 @@
+\chapter{Rapport d'Audit et Plan d'Actions Correctives}
+\label{chap:rapportaudit}
+
+L'audit ne prend fin qu'avec la livraison du rapport et l'engagement de l'audité sur un plan d'action. C'est le moment de la vérité où les constats techniques se transforment en décisions managériales.
+
+\section{La Réunion de Clôture (Closing Meeting)}
+% ------------------------------------------------------------------------------
+
+Avant de rédiger le rapport final, une réunion orale est obligatoire (ISO 19011, Section 6.4.9).
+
+\subsection{Objectifs}
+
+\begin{itemize}
+    \item Présenter les conclusions et les non-conformités à l'audité.
+    \item Clarifier les faits (pas les opinions).
+    \item Confirmer le délai de remise du rapport officiel.
+\end{itemize}
+
+\subsection{Règle d'Or : Pas de Surprise}
+
+L'audité ne doit pas découvrir une non-conformité majeure en lisant le rapport. Tout problème grave doit avoir été évoqué ou vu pendant l'audit.
+
+\begin{boxlizbiz}
+\textbf{Simulation LiZbiZ :}
+Lors de la réunion de clôture, l'auditeur annonce : "Nous avons trouvé une non-conformité majeure sur la gestion des départs. 5 comptes sont actifs alors que les collaborateurs sont partis."
+La DSI (Audité) confirme : "Oui, nous avons eu un bug de synchronisation avec les RH le mois dernier."
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Le Rapport d'Audit}
+% ------------------------------------------------------------------------------
+
+Le rapport est le livrable contractuel. Il doit être clair, concis et factuel.
+
+\subsection{Structure Type du Rapport}
+
+Le rapport suit généralement la structure suivante :
+
+\begin{enumerate}
+    \item \textbf{Page de Garde :} Référence, Date, Périmètre, Équipe.
+    \item \textbf{Résumé à l'Attention de la Direction (Executive Summary) :} Note globale, risques majeurs en 1 page.
+    \item \textbf{Objet et Périmètre :} Ce qui a été auditée (et ce qui ne l'a pas été).
+    \item \textbf{Méthodologie :} Référentiel utilisé (ISO 27001), échantillonnage.
+    \item \textbf{Synthèse des Constats :} Tableau récapitulatif des NC et Observations.
+    \item \textbf{Détail des Non-Conformités :} Fiches détaillées (Critère, Preuve, Risque).
+    \item \textbf{Conclusion et Recommandations :} Avis sur la capacité du système à atteindre les objectifs.
+\end{enumerate}
+
+\subsection{Qualité Rédactionnelle}
+
+Un bon rapport d'audit doit être :
+\begin{itemize}
+    \item \textbf{Factuel :} "Le serveur n'a pas de pare-feu activé" (Vrai/Faux).
+    \item \textbf{Non-jugemental :} Éviter "L'équipe est négligente". Préférer "La procédure de vérification n'est pas appliquée".
+\end{itemize}
+
+\subsection{Grille de Maturité (Optionnel)}
+
+Pour les filières Management, on présente souvent les résultats sous forme de maturité (échelle 0 à 5), inspirée du modèle CMMI ou COBIT.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cl}
+    \toprule
+    \textbf{Niveau} & \textbf{Description} \\
+    \midrule
+    0 & Inexistant (Pas de processus). \\
+    1 & Initial (Processus chaotic, dépend des individus). \\
+    2 & Reproductible (Processus défini mais pas formalisé). \\
+    3 & Défini (Processus formalisé et documenté). \\
+    4 & Maîtrisé (Processus mesuré par des indicateurs). \\
+    5 & Optimisé (Amélioration continue automatisée). \\
+    \bottomrule
+\end{tabular}
+\caption{Échelle de maturité simplifiée}
+\end{table}
+
+\begin{boxlizbiz}
+\textbf{Résultat LiZbiZ :}
+L'audit technique montre que la gestion des correctifs (Patch Management) est au \textbf{Niveau 1} (Initial) : "On met à jour quand on pense à le faire". L'objectif pour la certification est le \textbf{Niveau 3}.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Le Plan d'Actions Correctives (PAC)}
+% ------------------------------------------------------------------------------
+
+Le rapport liste les problèmes, le PAC propose les solutions.
+
+\subsection{Responsabilité}
+
+L'auditeur identifie les problèmes, mais \textbf{l'audité est responsable} de la définition et de la mise en œuvre des actions correctives. L'auditeur ne doit pas "faire le travail" de l'audité, mais valider la pertinence du plan.
+
+\subsection{Correction vs Action Corrective}
+
+Il est vital de distinguer les deux concepts pour éviter la récurrence.
+
+\begin{boxdef}
+\begin{itemize}
+    \item \textbf{Correction :} Action immédiate pour éliminer la non-conformité détectée (ex: Désactiver le compte "jmartin"). Soigne le symptôme.
+    \item \textbf{Action Corrective :} Action pour éliminer la cause d'une non-conformité (ex: Mettre en place un export automatique hebdomadaire des départs RH vers l'IT). Empêche la récidive.
+\end{itemize}
+\end{boxdef}
+
+\subsection{Structure du Plan d'Action}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{3cm}p{4cm}p{2cm}p{2cm}}
+    \toprule
+    \textbf{NC Référence} & \textbf{Action Proposée} & \textbf{Responsable} & \textbf{Délai} \\
+    \midrule
+    NC-01 (Comptes orphelins) & \textbf{Correction :} Désactiver les 5 comptes. & Admin Sys & J+1 \\
+    & \textbf{Action Corr :} Automatiser la revue des comptes. & DSI / DRH & J+30 \\
+    \bottomrule
+\end{tabular}
+\caption{Exemple de Plan d'Actions Correctives pour LiZbiZ}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Présentation au COMEX}
+% ------------------------------------------------------------------------------
+
+\subsection{Le Scénario Final}
+
+Le rapport est prêt. Le PDG de LiZbiZ convoque le COMEX pour écouter le verdict avant de signer les investissements.
+
+\begin{boxlizbiz}
+\textbf{Exercice de Synthèse (Oral ou Écrit) :}
+
+Vous devez rédiger la page de synthèse (Executive Summary) du rapport d'audit LiZbiZ. Elle doit contenir :
+
+\begin{enumerate}
+    \item \textbf{L'avis global :} "Le SMSI de LiZbiZ est partiellement efficace. Non prêt pour la certification ISO 27001 sans mise à niveau."
+    \item \textbf{Les points forts :} "Politique de sécurité rédigée, équipe technique compétente."
+    \item \textbf{Les points critiques (Majeurs) :} "Absence de processus formalisé de gestion des départs (Sécurité Logique) et manque de visibilité sur les logs (Surveillance)."
+    \item \textbf{La recommandation clé :} "Recrutement d'un RSSI dédié et mise en place d'un outil de gestion des identités (IAM) avant le 30 juin."
+\end{enumerate}
+\end{boxlizbiz}
+
+% ==============================================================================
+% Fichier : 03_module_audit.tex (Extrait Chapitre 6)
+% Description : Evaluation du Module 2
+% ==============================================================================

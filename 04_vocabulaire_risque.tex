@@ -1,0 +1,185 @@
+\chapter{Le Vocabulaire Fondamental du Risque}
+\label{chap:vocrisque}
+
+L'analyse de risque repose sur un vocabulaire précis. Une confusion entre ces termes conduit à des évaluations erronées.
+
+\section{Le Triangle du Risque : La Modélisation}
+
+Le risque est rarement isolé. Il résulte de la conjonction de trois facteurs fondamentaux, souvent représentés sous forme de triangle.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=2.5cm,
+    every node/.style={align=center}
+]
+    % Nodes
+    \node (asset) [draw=cyberblue, thick, fill=cyberblue!10, rounded corners, minimum width=3cm, minimum height=1cm] {\textbf{Actif} \\ (Ce que l'on protège)};
+    \node (threat) [draw=cyberred, thick, fill=cyberred!10, rounded corners, minimum width=3cm, minimum height=1cm, below left=of asset] {\textbf{Menace} \\ (Ce qu'on craint)};
+    \node (vuln) [draw=lizbizcolor, thick, fill=lizbizcolor!10, rounded corners, minimum width=3cm, minimum height=1cm, below right=of asset] {\textbf{Vulnérabilité} \\ (La faille)};
+
+    % Arrows
+    \draw[->, thick] (threat) -- node[above, sloped, font=\scriptsize] {Exploite} (vuln);
+    \draw[->, thick] (vuln) -- node[right, font=\scriptsize] {Impacte} (asset);
+    \draw[->, thick] (threat) -- node[left, font=\scriptsize] {Cible} (asset);
+\end{tikzpicture}
+\caption{Le triangle du risque}
+\end{figure}
+
+\subsection{L'Actif (Asset)}
+
+\begin{boxdef}
+\textbf{Actif :} Tout élément qui a de la valeur pour l'organisation et qui nécessite d'être protégé. Il peut être tangible (matériel) ou intangible (information, réputation).
+\end{boxdef}
+
+\textbf{Classification des actifs :}
+\begin{itemize}
+    \item \textbf{Primaires :} Activités vitales (Production, Vente).
+    \item \textbf{Supports :} Aident à la production (RH, Comptabilité).
+    \item \textbf{Infrastructure :} Fondations (Réseau, Électricité).
+\end{itemize}
+
+\begin{boxlizbiz}
+\textbf{Chez LiZbiZ :}
+L'ERP (logiciel de gestion) est un actif \textit{primaire} critique. S'il tombe, l'entrepôt s'arrête. La base de données clients est un actif \textit{intangible} sensible (RGPD).
+\end{boxlizbiz}
+
+\subsection{La Menace (Threat)}
+
+\begin{boxdef}
+\textbf{Menace :} Une cause potentielle d'incident, pouvant nuire à un actif. Elle est souvent caractérisée par son origine et sa motivation.
+\end{boxdef}
+
+\textbf{Sources de menace :}
+\begin{enumerate}
+    \item \textbf{Humaines :} Piratage externe, employé malveillant (interne), erreur humaine (négligence).
+    \item \textbf{Environnementales :} Incendie, inondation, panne électrique.
+\end{enumerate}
+
+\begin{boxlizbiz}
+\textbf{Chez LiZbiZ :} La principale menace est le \textit{Ransomware} (Rançonware). C'est une menace humaine externe, motivée par l'appât du gain financier.
+\end{boxlizbiz}
+
+\subsection{La Vulnérabilité (Vulnerability)}
+
+\begin{boxdef}
+\textbf{Vulnérabilité :} Une faiblesse ou un défaut dans un actif, un processus ou un contrôle, qui peut être exploité par une menace.
+\end{boxdef}
+
+\begin{boxalert}
+Une menace sans vulnérabilité ne crée pas de risque (le feu n'est un risque que si le bâtiment est inflammable ou s'il n'y a pas d'extincteur).
+\end{boxalert}
+
+\begin{boxlizbiz}
+\textbf{Chez LiZbiZ :} Le serveur Web est sous \textit{Windows Server 2012} non mis à jour. C'est une vulnérabilité technique critique (faille de sécurité connue).
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{La Mesure du Risque : Probabilité et Gravité}
+% ------------------------------------------------------------------------------
+
+Pour évaluer le risque, on quantifie deux dimensions : la Probabilité et la Gravité.
+
+\subsection{Probabilité (Likelihood)}
+
+La \textbf{Probabilité} est la chance qu'un événement indésirable se produise.
+
+\textbf{Échelle qualitative typique :}
+\begin{enumerate}
+    \item \textbf{Rare (1) :} Presque impossible.
+    \item \textbf{Peu probable (2) :} Possible mais surprenant.
+    \item \textbf{Possible (3) :} Peut se produire une fois par an.
+    \item \textbf{Probable (4) :} Se produit régulièrement.
+    \item \textbf{Quasi-certain (5) :} Se produit systématiquement.
+\end{enumerate}
+
+\begin{boxlizbiz}
+\textbf{Chez LiZbiZ :} La probabilité d'une attaque par Ransomware sur le serveur Web obsolète est \textbf{Probable (4)}. C'est une cible facile sur Internet.
+\end{boxlizbiz}
+
+\subsection{Gravité ou Impact (Severity)}
+
+La \textbf{Gravité} mesure l'ampleur des dommages causés à l'organisation si l'événement se réalise.
+
+\textbf{Dimensions de l'impact :}
+\begin{itemize}
+    \item \textbf{Opérationnel :} Arrêt de la production, perte de temps.
+    \item \textbf{Financier :} Perte d'argent directe, amendes.
+    \item \textbf{Juridique :} Poursuites, non-conformité (RGPD).
+    \item \textbf{Image :} Perte de confiance des clients, impact boursier.
+\end{itemize}
+
+\textbf{Échelle qualitative typique :}
+\begin{enumerate}
+    \item \textbf{Négligeable (1) :} Impact minime.
+    \item \textbf{Limité (2) :} Gêne temporaire.
+    \item \textbf{Significatif (3) :} Perte d'activité partielle.
+    \item \textbf{Critique (4) :} Perte d'activité majeure.
+    \item \textbf{Catastrophique (5) :} Mise en péril de l'entreprise.
+\end{enumerate}
+
+\begin{boxlizbiz}
+\textbf{Chez LiZbiZ :} Si l'ERP tombe en panne (Ransomware), la gravité est \textbf{Catastrophique (5)}. Plus de commandes, plus de livraisons, perte de chiffre d'affaires immédiate et atteinte à l'image "livraison 24h".
+\end{boxlizbiz}
+
+\subsection{La Criticité (Risk Level)}
+
+La \textbf{Criticité} (ou niveau de risque) est le produit de la Probabilité et de la Gravité.
+
+\[ Criticité = Probabilité \times Gravité \]
+
+On la visualise souvent via une \textbf{Matrice de Risque} (ou matrice de probabilité/gravité).
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Gravité / Prob.} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\ \hline
+\textbf{5 (Catastroph.)} & Moyen & Élevé & Critique & \cellcolor{red!50}\textbf{Critique} & \cellcolor{red!50}\textbf{Critique} \\ \hline
+\textbf{4 (Critique)} & Moyen & Élevé & Élevé & Critique & Critique \\ \hline
+\textbf{3 (Signif.)} & Faible & Moyen & Élevé & Élevé & Critique \\ \hline
+\textbf{2 (Limité)} & Faible & Faible & Moyen & Moyen & Élevé \\ \hline
+\textbf{1 (Négligeable)} & Faible & Faible & Faible & Faible & Moyen \\ \hline
+\end{tabular}
+\caption{Matrice de criticité standard (1 à 5)}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\section{Risque Inhérent vs Risque Résiduel}
+% ------------------------------------------------------------------------------
+
+\subsection{Risque Inhérent (Inherent Risk)}
+
+\begin{boxdef}
+\textbf{Risque Inhérent :} Niveau de risque \textit{brut}, avant toute mise en place de mesures de protection (barrières techniques ou organisationnelles).
+\end{boxdef}
+
+C'est le risque "à nu". Il permet de juger de l'exposition naturelle de l'entreprise.
+
+\subsection{Mesure de Sécurité (Safeguard / Countermeasure)}
+
+Action technique (firewall, chiffrement) ou organisationnelle (charte, formation) mise en place pour réduire le risque.
+
+\subsection{Risque Résiduel (Residual Risk)}
+
+\begin{boxdef}
+\textbf{Risque Résiduel :} Niveau de risque qui \textit{reste} après l'application des mesures de sécurité. C'est le risque accepté par l'entreprise.
+\end{boxdef}
+
+L'équation devient :
+\[ Risque\_Résiduel = Risque\_Inhérent - Efficacité\_Mesures \]
+
+\begin{boxlizbiz}
+\textbf{Exemple LiZbiZ :}
+\begin{itemize}
+    \item \textbf{Risque Inhérent :} Panne électrique du serveur ERP (Probabilité 2, Gravité 5 $\rightarrow$ Risque Critique).
+    \item \textbf{Mesure :} Installation d'un onduleur + Générateur électrique (Onglet "Business Continuity").
+    \item \textbf{Risque Résiduel :} Panne ERP due à l'électricité (Probabilité 1, Gravité 1 $\rightarrow$ Risque Faible). Le risque est maîtrisé.
+\end{itemize}
+\end{boxlizbiz}
+
+
+% ==============================================================================
+% Fichier : 02_module_risque.tex (Extrait Chapitre 3)
+% Description : Référentiels et Méthodes d'Analyse
+% ==============================================================================

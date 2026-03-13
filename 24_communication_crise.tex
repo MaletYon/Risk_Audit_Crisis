@@ -1,0 +1,119 @@
+\chapter{Communication de Crise}
+\label{chap:comcrise}
+
+En situation de crise, le temps médiatique est beaucoup plus rapide que le temps technique. Si l'entreprise ne communique pas, d'autres le feront à sa place (rumers, victimes, hackers). La communication est une arme stratégique de défense.
+
+\section{Présentation : L'Art de la Guerre Médiatique}
+% ------------------------------------------------------------------------------
+
+\subsection{Le Temps Médiatique vs Temps Technique}
+
+C'est le décalage le plus dangereux pour une entreprise.
+
+\begin{itemize}
+    \item \textbf{Temps Technique :} "Il nous faut 48h pour analyser les logs et comprendre l'origine de la faille." (Réalité scientifique).
+    \item \textbf{Temps Médiatique :} "Twitter réclame une explication dans les 30 minutes." (Réalité émotionnelle).
+\end{itemize}
+
+Si l'entreprise attend 48h pour communiquer, la rumeur aura déjà détruit sa réputation. Il faut communiquer \textbf{avant} d'avoir toutes les réponses techniques.
+
+\subsection{Les Objectifs de la Communication de Crise}
+
+\begin{enumerate}
+    \item \textbf{Informer :} Donner les faits connus.
+    \item \textbf{Rassurer :} Montrer que l'entreprise maîtrise la situation (ou fait de son mieux).
+    \item \textbf{Endiguer :} Stopper les rumeurs et les spéculations.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Concepts Clés : La Règle des 3 "T"}
+% ------------------------------------------------------------------------------
+
+La doctrine de communication de crise repose sur trois piliers :
+
+\subsection{T comme Ténor (Porte-parole)}
+
+Il faut une voix unique. Si le DSI dit une chose, le PDG une autre, et le commercial une troisième, l'entreprise perd toute crédibilité.
+
+\begin{boxalert}
+\textbf{Erreur fréquente :} Laisser un expert technique (DSI) s'exprimer avec un jargon incompréhensible ("On a eu une injection SQL sur le port 80..."). Le public entend : "On ne sait pas ce qui se passe".
+\end{boxalert}
+
+\subsection{T comme Transparence}
+
+Il ne faut pas mentir. Un mensonge découvert est pire que la crise elle-même. On peut dire "Nous ne savons pas encore", mais on ne doit pas dire "Tout va bien" si ce n'est pas vrai.
+
+\subsection{T comme Temporalité}
+
+Il faut communiquer vite et régulièrement.
+\begin{itemize}
+    \item \textbf{Holding Statement :} Déclaration initiale très courte (souvent dans l'heure). "Nous avons détecté un incident, nos équipes sont mobilisées."
+    \item \textbf{Points de situation (SitRep) :} Mises à jour régulières (ex: toutes les 4 heures) même s'il n'y a rien de nouveau. Cela montre que l'entreprise est active.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Les Cibles de Communication}
+% ------------------------------------------------------------------------------
+
+On ne parle pas de la même façon à tout le monde.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{3cm}p{4cm}p{5cm}}
+    \toprule
+    \textbf{Cible} & \textbf{Objectif} & \textbf{Message Type} \\
+    \midrule
+    \textbf{Interne (Salariés)} & Maintenir le lien, éviter la panique. "On ne parle pas à la presse." & "Voici la situation, voici ce qu'il faut faire (ne rien dire), nous vous tiendrons au courant." \\
+    \textbf{Clients / Victimes} & Dédommagement, empathie, fidélité. & "Nous sommes désolés, voici les mesures de protection que nous mettons en place pour vous." \\
+    \textbf{Médias / Public} & Préserver l'image, corriger les faits. & "L'incident est maîtrisé. L'entreprise est résiliente." \\
+    \textbf{Autorités (CNIL)} & Conformité légale. & "Notification de violation de données selon l'article 33 RGPD." \\
+    \bottomrule
+\end{tabular}
+\caption{Matrice des cibles de communication}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\section{Les Interdits (Les "Tues")}
+% ------------------------------------------------------------------------------
+
+Il y a des choses qu'il ne faut jamais faire en communication de crise :
+
+\begin{enumerate}
+    \item \textbf{Minimiser :} "Ce n'est qu'une petite fuite". (Manque de respect pour les victimes).
+    \item \textbf{Démentir sans preuve :} "Nos systèmes sont infaillibles". (Démenti souvent contredit par la suite).
+    \item \textbf{Culpabiliser la victime :} "Si le client avait utilisé un mot de passe fort...". (Inadmissible).
+    \item \textbf{Parler de rançon :} Ne jamais communiquer sur le montant ou le fait de payer une rançon (illégal / dangereux).
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Atelier d'Écriture}
+% ------------------------------------------------------------------------------
+
+\subsection{Scénario : La Vague de Panique}
+
+\begin{boxlizbiz}
+\textbf{10h00 :} L'article du "Monde" est paru. Le titre : "LiZbiZ met en danger vos données de santé".
+Le standard explose. Les clients suppriment leurs comptes. Il faut réagir \textbf{maintenant}.
+\end{boxlizbiz}
+
+\subsection{Mission : Rédiger le "Holding Statement"}
+
+Les étudiants doivent rédiger un communiqué de 10 lignes maximum pour être posté sur le site web de LiZbiZ et envoyé à la presse. Il doit respecter la structure :
+
+\begin{enumerate}
+    \item \textbf{Les Faits :} Reconnaître l'incident (sans donner de détails techniques sensibles).
+    \item \textbf{L'Action :} Dire ce qui est fait (mobilisation des experts, notification CNIL).
+    \item \textbf{L'Empathie :} S'excuser sincèrement.
+    \item \textbf{Le Suivi :} Donner un canal d'information dédié.
+\end{enumerate}
+
+\textbf{Exemple de mauvais communiqué (à éviter) :}
+\textit{"Suite à une attaque complexe de hackers sophistiqués que personne n'aurait pu prévoir, certains documents ont pu être consultés. Nos équipes informatiques travaillent dur. Nous vous tiendrons au courant."} (Passif, technique, manque d'empathie).
+
+\textbf{Exemple de bon communiqué (à reproduire) :}
+\textit{"LiZbiZ confirme avoir été victime d'une cyberattaque affectant la confidentialité de certaines données clients. Nous sommes profondément désolés pour ce préjudice. La sécurité de vos données est notre priorité absolue. Nous avons immédiatement mobilisé nos experts et notifié la CNIL. Une cellule d'écoute est activée au 0800XXXXXX pour répondre à vos questions. Nous vous tiendrons informés toutes les 4 heures."} (Actif, empathique, concret).
+
+% ==============================================================================
+% Fichier : 05_module_crise.tex (Extrait Chapitre 4)
+% Description : La Simulation de Crise (Exercice Tabletop)
+% ==============================================================================

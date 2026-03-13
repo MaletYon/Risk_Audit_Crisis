@@ -1,0 +1,163 @@
+\chapter{Cas Pratique : Entreprise LiZbiZ}
+\label{chap:lizbiz}
+
+\begin{boxlizbiz}
+\textbf{Mission :} Vous êtes recrutés en tant que consultants externes par la Direction des Systèmes d'Information (DSI) de l'entreprise \textbf{LiZbiZ}. Votre objectif sur la durée du cours : sécuriser l'entreprise, auditer les pratiques et gérer les crises inhérentes à son activité.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Identité de l'Entreprise}
+% ------------------------------------------------------------------------------
+
+\subsection{Présentation Générale}
+\textbf{LiZbiZ} est une entreprise de e-commerce spécialisée dans la vente de matériel informatique et high-tech. Elle se distingue par sa promesse de livraison en 24h grâce à une logistique automatisée ("Smart Logistics").
+
+\begin{itemize}
+    \item \textbf{Secteur :} E-commerce \& Logistique.
+    \item \textbf{Siège Social :} Lyon, France.
+    \item \textbf{Effectif :} 150 salariés (100 logisticiens, 30 administratifs/commerciaux, 20 techniciens/ingénieurs).
+    \item \textbf{Chiffre d'affaires :} 45 Millions d'euros.
+    \item \textbf{Statut :} Société Anonyme (SA), introduite en bourse il y a 6 mois.
+\end{itemize}
+
+\subsection{Organigramme Simplifié}
+La gouvernance est structurée ainsi :
+\begin{itemize}
+    \item \textbf{PDG (Jean-Pierre L.) :} Très médiatique, attaché à l'image de marque.
+    \item \textbf{DSI (Sophie M.) :} Votre commanditaire. Souhaite moderniser la sécurité.
+    \item \textbf{RSSI (Poste Vacant / Interim) :} Le poste est vacant, d'où votre recrutement.
+    \item \textbf{DAF (Directeur Financier) :} Très sensible aux coûts et aux risques financiers.
+    \item \textbf{Responsable Logistique :} Gère l'entrepôt connecté (IoT).
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Le Système d'Information (SI)}
+% ------------------------------------------------------------------------------
+
+Le SI de LiZbiZ est le cœur de l'entreprise. Il gère à la fois la vente en ligne et l'automatisation de l'entrepôt.
+
+\subsection{Architecture Matérielle et Logicielle}
+
+Le tableau ci-dessous récapitule les actifs matériels et logiciels critiques.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{3cm}p{4cm}p{6cm}}
+    \toprule
+    \textbf{Catégorie} & \textbf{Actif} & \textbf{Description Technique} \\
+    \midrule
+    \textbf{Infrastructure} & Serveur Principal & Dell PowerEdge R740 (ESXi) \\
+                            & Baie de Stockage & NAS Synology (Données \& Sauvegardes) \\
+                            & Réseau & Switch Cisco Catalyst (Core), Switch Netgear (Accès) \\
+    \midrule
+    \textbf{Logiciels} & ERP (Progiciel) & Odoo v15 (Gestion stocks, ventes, comptabilité) \\
+                       & E-commerce & Site Web sous Magento 2 \\
+                       & Base de Données & PostgreSQL 13 (Données clients \& commandes) \\
+                       & Annuaire & Windows Server 2019 (Active Directory) \\
+    \midrule
+    \textbf{Périphériques} & Terminaux & 40 Postes Windows 10, 10 Laptops (Télétravail) \\
+                           & IoT Logistique & 50 Scanners RFID (Android), 20 Tablettes de stock \\
+    \bottomrule
+\end{tabular}
+\caption{Inventaire des actifs principaux de LiZbiZ}
+\end{table}
+
+\subsection{Topologie Réseau et Segmentation}
+
+L'architecture réseau est segmentée pour séparer les flux. C'est cette topologie que vous retrouverez dans le laboratoire GNS3.
+
+\begin{figure}[htbp]
+\centering
+% Note: Insérer ici le schéma réel généré sous GNS3 ou un schéma TikZ
+% \includegraphics[width=0.8\textwidth]{figures/schema_reseau_lizbiz.png}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    server/.style={rectangle, draw=cyberblue, thick, fill=cyberblue!10, minimum width=2.5cm, minimum height=1cm, align=center},
+    firewall/.style={rectangle, draw=cyberred, thick, fill=cyberred!10, minimum width=2cm, minimum height=1cm, align=center},
+    cloud/.style={ellipse, draw=black!50, thick, fill=gray!10, minimum width=2cm, minimum height=1cm}
+]
+    % Nodes
+    \node[cloud] (internet) {Internet};
+    \node[firewall, below=of internet] (fw) {Firewall\\(pFsense)};
+    
+    \node[server, below left=1.5cm and 2cm of fw] (dmz) {DMZ\\(Web/DNS)};
+    \node[server, below=1.5cm of fw] (app) {APP\\(ERP/DB)};
+    \node[server, below right=1.5cm and 2cm of fw] (user) {Users\\(AD/Postes)};
+    \node[server, below=0.5cm of app] (iot) {IoT\\(Logistique)};
+
+    % Connections
+    \draw[->, thick] (internet) -- (fw);
+    \draw[->, thick] (fw) -- (dmz);
+    \draw[->, thick] (fw) -- (app);
+    \draw[->, thick] (fw) -- (user);
+    \draw[->, thick] (app) -- (iot);
+
+\end{tikzpicture}
+\caption{Schéma logique simplifié du réseau LiZbiZ}
+\end{figure}
+
+\textbf{Détail des VLANs :}
+\begin{itemize}
+    \item \textbf{VLAN 10 (DMZ) :} Accessible depuis Internet. Héberge le site marchand. Haut risque.
+    \item \textbf{VLAN 20 (Applicatif) :} Cœur du système. Contient l'ERP et la Base de Données. Aucun accès direct externe autorisé.
+    \item \textbf{VLAN 30 (Bureau/Utilisateurs) :} Postes de travail du siège. Accès Internet et Applicatif.
+    \item \textbf{VLAN 40 (IoT/Logistique) :} Réseau isolé pour les scanners et capteurs. Faible sécurité par conception.
+    \item \textbf{VLAN 99 (Administration) :} Accès de gestion aux équipements. Très sensible.
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Environnement de Laboratoire (Immersion)}
+% ------------------------------------------------------------------------------
+
+Pour simuler cette entreprise, nous utiliserons une maquette virtuelle.
+
+\subsection{Configuration du Lab (GNS3 / EVE-NG)}
+Les étudiants disposeront d'une image pré-configurée contenant :
+\begin{itemize}
+    \item \textbf{1 Routeur/Firewall pFsense :} Filtre les flux entre VLANs.
+    \item \textbf{2 Machines Virtuelles (Linux Alpine/Debian) :} Simulant le serveur Web et l'ERP.
+    \item \textbf{1 Serveur Windows Server :} Simulant l'Active Directory.
+    \item \textbf{1 Attaquant (Kali Linux) :} Simulant les menaces externes (accès internet).
+\end{itemize}
+
+\subsection{Données Sensibles Simulées}
+Pour réalisme, des jeux de données fictifs sont injectés :
+\begin{itemize}
+    \item \textbf{Clients :} 10 000 entrées (Nom, Prénom, Email, Adresse, Hash de mot de passe).
+    \item \textbf{Transactions :} Historique de commandes et moyens de paiement (fictifs).
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Contexte Réglementaire et Contractuel}
+% ------------------------------------------------------------------------------
+
+LiZbiZ est soumise à des contraintes légales strictes, point de départ de l'analyse de risque.
+
+\begin{enumerate}
+    \item \textbf{RGPD :} Gestion de données personnelles clients et employés.
+    \item \textbf{PCI-DSS :} Acceptation des paiements par carte bancaire (niveau 1).
+    \item \textbf{Loi de Programmation Militaire (LPM) :} Opérateur d'importance vitale (OIV) potentiel car lié à la logistique critique (à débattre).
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Problématiques Actuelles}
+% ------------------------------------------------------------------------------
+
+\begin{boxalert}
+\textbf{Situation initiale :} Suite à une croissance rapide, la sécurité a été négligée. Le PDG s'inquiète d'une récente vague d'attaques par Ransomware chez des concurrents. La DSI manque de visibilité sur son niveau de risque réel.
+\end{boxalert}
+
+\textbf{Points de douleur identifiés :}
+\begin{itemize}
+    \item Mises à jour de sécurité irrégulières sur le serveur Web.
+    \item Absence de plan de continuité d'activité (PCA) formalisé.
+    \item Droits d'accès trop larges sur l'ERP (anciens collaborateurs encore actifs).
+\end{itemize}
+
+C'est sur cette base que commence votre mission.
+
+
+% ==============================================================================
+% Fichier : 02_module_risque.tex (Extrait Chapitre 1)
+% Description : Introduction à la Gouvernance de la Sécurité
+% ==============================================================================

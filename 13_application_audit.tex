@@ -1,0 +1,137 @@
+\chapter{Application Pratique : Réalisation de l'Audit LiZbiZ}
+\label{chap:appaudit}
+
+Ce chapitre met en œuvre les concepts théoriques sur le terrain. Nous simulons la phase de réalisation de l'audit (Section 6.4 de l'ISO 19011) au sein de l'entreprise LiZbiZ.
+
+\section{Étape 1 : Collecte des Preuves}
+
+L'auditeur doit collecter des informations vérifiables pour étayer ses conclusions.
+
+\subsection{Les Trois Sources de Preuves}
+
+\begin{enumerate}
+    \item \textbf{Entretiens (Interviews) :} Échanges avec le personnel. (Subjectif, à recouper).
+    \item \textbf{Observation :} Vue directe des activités. (Objectif, instant T).
+    \item \textbf{Examen Documentaire et Technique :} Analyse de procédures, de logs, de configurations. (Objectif, historique).
+\end{enumerate}
+
+\begin{boxdef}
+\textbf{Piste d'audit (Audit Trail) :} Enchaînement logique et documenté des preuves permettant de reconstituer l'historique d'un événement ou d'une transaction.
+\end{boxdef}
+
+\subsection{Technique de l'Échantillonnage}
+
+Il est impossible de vérifier l'intégralité des logs ou des 150 comptes utilisateurs. L'auditeur pratique l'\textbf{échantillonnage}.
+
+\begin{itemize}
+    \item \textbf{Échantillonnage statistique :} Choix aléatoire de 10 comptes.
+    \item \textbf{Échantillonnage orienté risque :} Choix ciblé (ex: les comptes admins, les nouveaux arrivés, les comptes inactifs depuis longtemps).
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Étape 2 : Audit Technique sur le Lab GNS3}
+% ------------------------------------------------------------------------------
+
+Nous connectons maintenant l'auditeur au laboratoire GNS3 de LiZbiZ pour un audit technique réel.
+
+\subsection{Scénario 1 : Audit de la Segmentation Réseau}
+
+\textbf{Critère d'audit (ISO 27001 - A.5.15) :} Le réseau doit être segmenté pour isoler les flux sensibles.
+
+\begin{boxlizbiz}
+\textbf{Mission Pratique :}
+L'auditeur se connecte au routeur/firewall (pFsense) via la console.
+
+\textbf{Tâche :} Vérifier les règles de filtrage inter-VLAN.
+\textbf{Commande / Action :} Visualiser les règles (Access Control Lists).
+
+\textbf{Constat attendu :}
+L'auditeur découvre une règle "Allow Any -> Any" entre le VLAN 40 (IoT Logistique) et le VLAN 20 (Applicatif).
+\textbf{Preuve :} Capture d'écran de la règle.
+\textbf{Analyse :} Si un scanner IoT est compromis, il peut atteindre l'ERP. Non-respect du principe de moindre privilège.
+\end{boxlizbiz}
+
+\subsection{Scénario 2 : Audit des Droits d'Accès}
+
+\textbf{Critère d'audit (ISO 27001 - A.5.18) :} Les droits d'accès doivent être révoqués lors du départ d'un employé.
+
+\begin{boxlizbiz}
+\textbf{Mission Pratique :}
+L'auditeur accède au contrôleur de domaine (Windows Server AD).
+
+\textbf{Tâche :} Lister les utilisateurs actifs et comparer avec la liste des employés fournie par la RH (document fictif "ListeEmployes\_Janvier.pdf").
+
+\textbf{Constat attendu :}
+L'auditeur trouve le compte "jmartin" actif. La liste RH indique que "Jean Martin" a quitté l'entreprise il y a 3 mois.
+\textbf{Preuve :} Capture d'écran de l'Active Directory montrant "Enabled = True".
+\textbf{Analyse :} Procédure de départ non appliquée. Risque de compte orphelin.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Étape 3 : Audit Organisationnel (Jeu de Rôle)}
+% ------------------------------------------------------------------------------
+
+L'audit n'est pas que technique. Il faut auditer les processus humains.
+
+\subsection{Scénario : Audit du Processus de Gestion des Incidents}
+
+\textbf{Critère d'audit (ISO 27001 - A.5.24) :} L'organisation doit gérer les incidents de sécurité.
+
+\begin{boxlizbiz}
+\textbf{Mise en situation :}
+L'auditeur interroge le Responsable Helpdesk (joué par un étudiant).
+
+\textbf{Question de l'Auditeur :} "Que s'est-il passé le 12 janvier dernier suite à l'alerte antivirus sur le poste de la comptabilité ? Pouvez-vous me montrer le ticket ?"
+
+\textbf{Réponse simulée (Erreur) :} "Ah, on a juste supprimé le virus. C'était un faux positif je pense, on n'a pas jugé utile d'ouvrir un ticket pour ça."
+
+\textbf{Analyse de l'Auditeur :}
+Absence de traceabilité. La procédure exige un ticket pour tout incident.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Étape 4 : Analyse des Écarts et Formulation des Constats}
+% ------------------------------------------------------------------------------
+
+Une fois les preuves collectées, il faut formuler les constats.
+
+\subsection{La Structure d'un Constat d'Audit}
+
+Un bon constat répond à la structure : \textbf{Critère - Constat - Preuve - Cause - Risque}. Il ne doit jamais être une opinion.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{3cm}p{9cm}}
+    \toprule
+    \textbf{Élément} & \textbf{Exemple LiZbiZ (Cas compte orphelin)} \\
+    \midrule
+    \textbf{Critère} & ISO 27001 A.5.18 : "Les droits d'accès doivent être retirés lors du départ". \\
+    \textbf{Constat} & Le compte "jmartin" est toujours actif 3 mois après le départ. \\
+    \textbf{Preuve} & Capture AD + Liste RH. \\
+    \textbf{Cause} & Absence de communication fluide entre RH et IT. \\
+    \textbf{Risque} & Utilisation malveillante des données par un ancien employé. \\
+    \bottomrule
+\end{tabular}
+\caption{Formulation d'un constat d'audit}
+\end{table}
+
+\subsection{Classification de la Non-Conformité}
+
+L'auditeur doit qualifier la gravité de l'écart.
+
+\begin{itemize}
+    \item \textbf{Non-Conformité Majeure :} Absence totale de système ou défaillance généralisée. (Ex: Aucune procédure de gestion des accès n'existe).
+    \item \textbf{Non-Conformité Mineure :} Incident isolé, ponctuel. (Ex: Le compte "jmartin" est le seul oublié, la procédure existe mais a eu un raté).
+    \item \textbf{Observation :} Piste d'amélioration, pas de non-respect strict. (Ex: La procédure de départ est sur papier, il serait mieux de la dématérialiser).
+\end{itemize}
+
+\begin{boxlizbiz}
+\textbf{Décision pour LiZbiZ :}
+L'oubli du compte "jmartin" est classé \textbf{Non-Conformité Mineure}, car la procédure existe. Cependant, si l'auditeur trouve 10 comptes orphelins sur 150, cela deviendra une \textbf{Non-Conformité Majeure} (défaillance du système de contrôle).
+\end{boxlizbiz}
+
+% ==============================================================================
+% Fichier : 03_module_audit.tex (Extrait Chapitre 5)
+% Description : Rapport d'Audit et Plan d'Actions Correctives
+% ==============================================================================

@@ -1,0 +1,142 @@
+\chapter{Référentiels et Méthodes d'Analyse}
+\label{chap:referentiels}
+
+L'analyse de risque ne s'improvise pas. Pour être reconnue et cohérente, elle doit suivre des cadres méthodologiques précis, appelés \textbf{référentiels}.
+
+\section{Le Paysage Normatif}
+
+\subsection{Qu'est-ce qu'une norme ISO ?}
+
+\begin{boxdef}
+\textbf{ISO} : Acronyme de \textit{International Organization for Standardization}. C'est un organisme international qui définit des standards volontaires. Une norme ISO est un document qui fournit des exigences, des spécifications, des lignes directrices ou des caractéristiques à utiliser de manière cohérente.
+\end{boxdef}
+
+\subsection{ISO 31000 : La Norme "Mère"}
+
+La norme \textbf{ISO 31000} est le standard international de référence pour le management du risque. Elle ne se limite pas à l'informatique ; elle s'applique à tout type de risque (financier, sécurité physique, projet).
+
+\textbf{Principes clés :}
+\begin{itemize}
+    \item Le management du risque doit être intégré, structuré et inclusif.
+    \item Il doit être dynamique (le risque évolue) et adapté au contexte.
+\end{itemize}
+
+Elle fournit le cadre général, mais pas les outils techniques "prêts à l'emploi" pour le risque numérique. C'est là qu'intervient l'ISO 27005.
+
+\subsection{ISO 27005 : Spécialisée Sécurité de l'Information}
+
+La norme \textbf{ISO 27005} (Sécurité de l'information -- Gestion des risques en sécurité de l'information) est le dérivé de l'ISO 31000 pour le monde du SI.
+
+\begin{boxdef}
+\textbf{Objectif ISO 27005 :} Fournir des lignes directrices pour la gestion des risques liés à la sécurité de l'information. Elle soutient les exigences de l'ISO 27001.
+\end{boxdef}
+
+Elle définit un processus itératif :
+\begin{enumerate}
+    \item \textbf{Contextualisation} : Définir le cadre.
+    \item \textbf{Appréciation du risque} : Identification, Analyse, Estimation.
+    \item \textbf{Traitement du risque} : Réduction, Évitement, Transfert, Acceptation.
+    \item \textbf{Acceptation du risque} : Validation formelle.
+    \item \textbf{Communication} : Dialogue avec les parties prenantes.
+    \item \textbf{Suivi et révision} : Mise à jour continue.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{EBIOS RM : La Méthode de Référence Française}
+% ------------------------------------------------------------------------------
+
+\subsection{Présentation et Origine}
+
+\begin{boxdef}
+\textbf{EBIOS RM} : \textit{Expression des Besoins et Identification des Objectifs de Sécurité - Risk Manager}.
+C'est une méthode d'analyse de risques développée par l'ANSSI (\textit{Agence Nationale de la Sécurité des Systèmes d'Information}) en France.
+\end{boxdef}
+
+C'est la méthode la plus utilisée en France par les administrations et les grandes entreprises privées, notamment pour sa conformité avec le RGPD et la Loi de Programmation Militaire (LPM).
+
+\subsection{Les 5 Ateliers de la Méthode}
+
+EBIOS RM fonctionne par ateliers collaboratifs. Les participants (métiers et IT) travaillent ensemble.
+
+\subsubsection{Atelier 1 : Établissement du contexte}
+On définit le périmètre, les contraintes (budgétaires, légales) et on identifie les \textbf{Actifs Essentiels} (ce qui a de la valeur).
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} L'actif essentiel identifié est la "Base de Données Clients" et le "Processus de Commande".
+\end{boxlizbiz}
+
+\subsubsection{Atelier 2 : Étude des évènements redoutés}
+On identifie les \textbf{Menaces} et les \textbf{Sources de Menaces}. On classe les risques selon les critères de sécurité :
+\begin{itemize}
+    \item \textbf{D} : Disponibilité.
+    \item \textbf{I} : Intégrité.
+    \item \textbf{C} : Confidentialité.
+    \item \textbf{T} : Traçabilité (Preuve).
+\end{itemize}
+
+\subsubsection{Atelier 3 : Analyse des risques}
+On identifie les \textbf{Vulnérabilités} et on construit des \textbf{Scénarios de Risque}.
+Un scénario répond à la question : \textit{"Une source de menace exploite-t-elle une vulnérabilité pour nuire à un actif ?"}
+
+\subsubsection{Atelier 4 : Étude des mesures}
+On évalue la gravité et la vraisemblance pour calculer le risque. On identifie les mesures existantes et leur efficacité.
+
+\subsubsection{Atelier 5 : Gestion du risque}
+On décide de la stratégie de traitement (Accepter, Réduire, etc.) et on élabore le \textbf{Plan d'Action Sécurité (PAS)}.
+
+% ------------------------------------------------------------------------------
+\section{NIST SP 800-30 : L'Approche Américaine}
+% ------------------------------------------------------------------------------
+
+\subsection{Présentation}
+
+Le \textbf{NIST} (\textit{National Institute of Standards and Technology}) est un organisme américain. Le document \textbf{SP 800-30} (Guide for Conducting Risk Assessments) est le standard de fait aux États-Unis et pour les entreprises travaillant avec le gouvernement américain.
+
+\subsection{Comparaison avec EBIOS}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{3cm}p{5cm}p{5cm}}
+    \toprule
+    \textbf{Critère} & \textbf{EBIOS RM (France)} & \textbf{NIST SP 800-30 (USA)} \\
+    \midrule
+    Approche & Collaborative, ateliers humains. & Processus,Base de données technique. \\
+    Focus & Gouvernance et métier. & Technique et opérationnel. \\
+    Format & Grille de probabilité/gravité (Qualitatif). & Grille High/Medium/Low (Qualitatif/Semi-quantitatif). \\
+    Terminologie & "Evènements redoutés". & "Threat Events". \\
+    \bottomrule
+\end{tabular}
+\caption{Comparaison EBIOS RM vs NIST SP 800-30}
+\end{table}
+
+\begin{boxdef}
+\textbf{RMF (Risk Management Framework) :} Le cadre du NIST qui inclut la gestion du risque dans tout le cycle de vie du système (Categorize, Select, Implement, Assess, Authorize, Monitor).
+\end{boxdef}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Choix de la Méthode}
+% ------------------------------------------------------------------------------
+
+\subsection{Analyse du besoin méthodologique}
+
+LiZbiZ est une entreprise française en forte croissance, soumise au RGPD et potentiellement à la LPM (secteur logistique). Le PDG est soucieux de sa réputation et la DSI a besoin d'une méthode structurée pour communiquer avec le COMEX.
+
+\subsection{Décision}
+
+\begin{boxlizbiz}
+\textbf{Choix retenu : La méthode EBIOS RM.}
+
+\textbf{Justification :}
+\begin{enumerate}
+    \item \textbf{Conformité :} Alignement total avec les exigences réglementaires françaises et européennes.
+    \item \textbf{Communication :} Les scénarios d'EBIOS sont compréhensibles par les non-techniciens (COMEX), ce qui est vital pour obtenir des budgets.
+    \item \textbf{Gouvernance :} Intègre naturellement les concepts de RACI et de validation par la direction.
+\end{enumerate}
+
+Nous utiliserons EBIOS RM pour l'ensemble des ateliers pratiques de ce module.
+\end{boxlizbiz}
+
+
+% ==============================================================================
+% Fichier : 02_module_risque.tex (Extrait Chapitre 4)
+% Description : Application Pratique - Analyse de Risque LiZbiZ
+% ==============================================================================

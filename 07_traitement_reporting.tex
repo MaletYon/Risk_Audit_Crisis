@@ -1,0 +1,145 @@
+\chapter{Traitement du Risque et Reporting}
+\label{chap:traitement}
+
+Une fois les risques identifiés et analysés, l'entreprise doit décider d'une stratégie. C'est ici que la cybersécurité rejoint la gestion de projet et la finance.
+
+\section{Les 4 Options de Traitement du Risque}
+
+La norme ISO 27005 définit quatre options principales pour traiter un risque. Le choix dépend de l'appétence au risque de l'entreprise et du rapport coût/bénéfice.
+
+\subsection{Option 1 : Réduction (Mitigation)}
+
+\begin{boxdef}
+\textbf{Réduction :} Mettre en place des mesures de sécurité (techniques ou organisationnelles) pour diminuer la Probabilité et/ou la Gravité du risque. C'est l'option la plus courante.
+\end{boxdef}
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ (Risque Ransomware) :}
+Installer un système de sauvegarde externalisé et cloisonner le réseau (segmentation VLAN).
+\textbf{Effet :} La Gravité baisse (on peut restaurer) et la Probabilité baisse (plus difficile à propager).
+\end{boxlizbiz}
+
+\subsection{Option 2 : Acceptation}
+
+\begin{boxdef}
+\textbf{Acceptation :} Décider consciemment de ne pas traiter le risque. Cela s'applique généralement aux risques faibles ou lorsque le coût du traitement dépasse le coût de l'impact potentiel.
+\end{boxdef}
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} Un risque de panne mineure d'une imprimante du service marketing (impact faible) peut être accepté. On ne mettra pas d'imprimante de secours.
+\end{boxlizbiz}
+
+\subsection{Option 3 : Évitement (Suppression)}
+
+\begin{boxdef}
+\textbf{Évitement :} Supprimer l'activité ou l'actif qui génère le risque. C'est une décision radicale.
+\end{boxdef}
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} Si la vente d'un produit spécifique (ex: kits de survie) génère trop de fraudes et de risques légaux, LiZbiZ peut décider d'arrêter purement et simplement cette gamme de produits. Le risque disparaît, mais le chiffre d'affaires aussi.
+\end{boxlizbiz}
+
+\subsection{Option 4 : Transfert (Partage)}
+
+\begin{boxdef}
+\textbf{Transfert :} Déplacer l'impact financier du risque vers un tiers. Cela se fait généralement par le biais d'une assurance ou de l'externalisation.
+\end{boxdef}
+
+\begin{boxlizbiz}
+\textbf{LiZbiZ :} Souscrire une assurance "Cyber-risque" pour couvrir les frais de rançon et de communication de crise. Ou externaliser l'hébergement du site web à un Cloud Provider (AWS/Azure) pour transférer le risque physique du serveur.
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Le Plan d'Action Sécurité (PAS)}
+% ------------------------------------------------------------------------------
+
+\subsection{Définition}
+
+\begin{boxdef}
+\textbf{PAS (Plan d'Action Sécurité) :} Document opérationnel qui liste les mesures décidées, les responsables, les budgets et les échéances pour traiter les risques identifiés. C'est la "Feuille de route" du RSSI.
+\end{boxdef}
+
+\subsection{Structure type d'un PAS}
+
+Il doit être SMART (Spécifique, Mesurable, Atteignable, Réaliste, Temporel).
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{4cm}p{2.5cm}p{2.5cm}p{2cm}p{2cm}}
+    \toprule
+    \textbf{Action} & \textbf{Responsable} & \textbf{Échéance} & \textbf{Budget} & \textbf{Priorité} \\
+    \midrule
+    Segmentation VLAN (Firewall) & Admin Sys & M+1 & 0€ (Interne) & Haute \\
+    Mise à jour Serveur Web & Admin Sys & Immédiat & 0€ & Critique \\
+    Formation anti-phishing & RH / RSSI & M+3 & 5000€ & Moyenne \\
+    Souscription Assurance & DAF & M+2 & 10k€/an & Moyenne \\
+    \bottomrule
+\end{tabular}
+\caption{Extrait du PAS pour LiZbiZ}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\section{Reporting et Argumentation Financière}
+% ------------------------------------------------------------------------------
+
+Le RSSI doit convaincre le COMEX de financer le PAS. Pour cela, il doit parler le langage de la direction.
+
+\subsection{Le ROI de la Sécurité (ROSPI)}
+
+Il est difficile de calculer un Retour sur Investissement (ROI) classique pour la sécurité, car la sécurité "ne rapporte" pas d'argent direct, elle évite des pertes. On parle plutôt de \textbf{ROSPI} (Return On Security Investment).
+
+\begin{boxdef}
+\textbf{ROSPI :} Comparaison entre le coût de la mesure et l'économie de perte potentielle (ALE).
+\[ ROSPI = \frac{(Perte\_Évitée - Coût\_Mesure)}{Coût\_Mesure} \]
+\end{boxdef}
+
+\subsection{Argumentaire pour le COMEX}
+
+Pour le risque Ransomware (Scénario S1) chez LiZbiZ :
+
+\begin{itemize}
+    \item \textbf{Coût de l'incident (Impact) :} 200 000 € (Perte CA + Amende + Image).
+    \item \textbf{Probabilité annuelle :} 1 fois par an (Vraisemblance élevée).
+    \item \textbf{Coût de la mesure (Segmentation) :} 5 000 € (Jours hommes).
+    \item \textbf{Efficacité de la mesure :} Réduit la probabilité de 90\%.
+\end{itemize}
+
+\textbf{Calcul simplifié :}
+Même si le calcul exact est complexe, l'argument est simple : "Investir 5 000 € maintenant évite un risque de perte de 200 000 € avec une probabilité très forte. C'est une assurance-vie pour l'entreprise."
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Présentation au COMEX}
+% ------------------------------------------------------------------------------
+
+\subsection{Simulation}
+
+Le DSI et le consultant (étudiant) présentent les résultats au COMEX (le professeur).
+
+\begin{boxlizbiz}
+\textbf{Scénario :} Le PDG de LiZbiZ hésite à valider le budget pour la segmentation réseau.
+
+\textbf{Argument du Consultant :}
+"Monsieur le PDG, notre analyse EBIOS montre que votre système de facturation est exposé à un risque critique. Actuellement, un pirate peut accéder aux données bancaires des clients depuis le site web public. Le coût de l'aménagement réseau est de 5 jours de travail. Le coût d'une fuite de données est estimé à 200k€ d'amendes RGPD et une perte de crédibilité boursière. Nous recommandons le traitement par \textbf{Réduction} immédiate."
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Exercices de Fin de Module}
+% ------------------------------------------------------------------------------
+
+\subsection{Exercice 1 : Décision de Traitement}
+
+Pour chacun des risques suivants chez LiZbiZ, choisissez l'option de traitement la plus adaptée et justifiez :
+\begin{enumerate}
+    \item Risque de panne électrique générale du petit local serveur (Probabilité Faible, Gravité Haute).
+    \item Risque de vol d'un smartphone d'un commercial (Probabilité Moyenne, Gravité Faible si données chiffrées).
+    \item Risque juridique lié à l'utilisation d'un logiciel piraté sur un poste isolé.
+\end{enumerate}
+
+\subsection{Exercice 2 : Projet Final}
+
+Rédigez une "Fiche de Risque" complète pour le scénario "Vol de données clients via le WiFi Logistique" et proposez un PAS de 3 actions concrètes.
+% ==============================================================================
+% Fichier : 02_module_risque.tex (Extrait Chapitre 6)
+% Description : Evaluation du Module 1
+% ==============================================================================

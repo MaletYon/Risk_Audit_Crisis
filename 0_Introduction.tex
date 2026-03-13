@@ -1,0 +1,104 @@
+% ==============================================================================
+% Fichier     : chapitres/0_Introduction.tex
+% Titre       : Introduction Générale — Analyse de Risque, Audit et Gestion de Crise
+% Auteur      : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% ==============================================================================
+
+\chapter*{Introduction Générale}
+\addcontentsline{toc}{chapter}{Introduction Générale}
+\markboth{Introduction Générale}{Introduction Générale}
+
+\begin{flushright}
+    \itshape
+    <<~Ce qui ne vous tue pas vous rend plus fort —\\
+    à condition d'en avoir tiré les leçons.~>>\\[0.5ex]
+    \small--- Adaptation de Nietzsche, \textit{Crépuscule des idoles}
+\end{flushright}
+
+\vspace{1.5ex}
+
+% ==============================================================================
+\section*{Contexte et Pertinence}
+% ==============================================================================
+
+La cybersécurité contemporaine ne se réduit plus à une question de pare-feux ou de mises à jour. Elle est devenue un enjeu de gouvernance, un défi managérial et une obligation réglementaire qui engage la responsabilité des dirigeants au même titre qu'une décision financière. L'entrée en vigueur du RGPD, la montée en puissance des attaques par rançongiciel et la multiplication des incidents affectant des organisations de toutes tailles ont définitivement ancré la sécurité des systèmes d'information dans l'agenda des comités exécutifs.
+
+Ce cours aborde la sécurité de l'information sous un angle \textbf{stratégique et opérationnel}, articulé autour de trois piliers indissociables : \termecle{anticiper} (analyse de risque), \termecle{vérifier} (audit) et \termecle{réagir} (gestion des incidents et des crises). Ces trois dimensions correspondent précisément au cycle vertueux d'amélioration continue \sigle{PDCA} — Planifier, Réaliser, Vérifier, Améliorer — qui constitue le fil conducteur de l'ensemble du programme.
+
+% ==============================================================================
+\section*{Fil Conducteur : L'Entreprise LiZbiZ}
+% ==============================================================================
+
+La théorie, aussi rigoureuse soit-elle, n'acquiert de sens qu'à l'épreuve du réel. C'est pourquoi l'intégralité de ce cours est articulée autour d'un \textbf{cas d'entreprise unique et progressif} : l'entreprise \textbf{LiZbiZ}, spécialiste du e-commerce et de la logistique automatisée.
+
+\begin{boxlizbiz}
+Tout au long des quatre modules, vous endosserez le rôle de \textbf{consultants mandatés par la DSI} de LiZbiZ. Vous ne serez pas spectateurs : vous analyserez leurs risques réels, réaliserez leur pré-audit ISO 27001, répondrez à leur incident de sécurité et piloterez leur cellule de crise lors d'un exercice de simulation. L'entreprise LiZbiZ constitue votre terrain d'expérimentation — avec ses vulnérabilités, ses contradictions organisationnelles et ses contraintes réglementaires authentiques.
+\end{boxlizbiz}
+
+% ==============================================================================
+\section*{Objectifs Généraux du Cours}
+% ==============================================================================
+
+\begin{boxobjectifs}
+À l'issue de ce cours, l'étudiant sera capable de :
+\begin{enumerate}
+    \item \textbf{Maîtriser les fondements de la gouvernance} du SI (RACI, RSSI, COMEX, alignement stratégique).
+    \item \textbf{Conduire une analyse de risque complète} selon les méthodes reconnues : EBIOS RM (ANSSI), ISO 27005, NIST SP 800-30.
+    \item \textbf{Planifier et réaliser un audit de sécurité} conforme à l'ISO 19011, avec rapport de non-conformités et plan d'actions correctives.
+    \item \textbf{Gérer un incident de sécurité} selon le cycle ISO 27035 : détection, confinement, investigation, éradication, RETEX.
+    \item \textbf{Mettre en œuvre un Plan de Continuité d'Activité (PCA)} avec analyse d'impact (BIA), définition du RTO et du RPO, et exercice de restauration.
+    \item \textbf{Piloter une cellule de crise} : organisation, communication sous pression, règles des 3T, gestion du porte-parole.
+    \item \textbf{Produire un Retour d'Expérience (RETEX)} structuré, incluant l'analyse des causes racines (méthode des 5 Pourquoi, diagramme d'Ishikawa) et un plan d'amélioration hiérarchisé.
+    \item \textbf{Communiquer efficacement} avec les décideurs non-techniques (COMEX, PDG) sur des enjeux de cybersécurité.
+\end{enumerate}
+\end{boxobjectifs}
+
+% ==============================================================================
+\section*{Architecture du Cours}
+% ==============================================================================
+
+Le cours est structuré en \textbf{quatre modules progressifs}, chacun correspondant à une étape du cycle de vie de la sécurité, du plus stratégique au plus opérationnel.
+
+\medskip
+\noindent\textbf{Partie I — Gouvernance et Analyse de Risque}
+
+Elle établit les fondements : gouvernance du SI, matrice RACI, vocabulaire du risque (actif, menace, vulnérabilité, criticité), méthodes EBIOS RM et NIST SP 800-30, application pratique sur LiZbiZ, traitement du risque et Plan d'Action Sécurité.
+
+\medskip
+\noindent\textbf{Partie II — Audit et Management de la Qualité}
+
+Elle couvre l'intégralité du processus d'audit selon l'ISO 19011 : déclenchement, préparation, réalisation terrain (entretiens, tests techniques), rapport de non-conformités, plan d'actions correctives, référentiels ISO 27001/9001/COBIT.
+
+\medskip
+\noindent\textbf{Partie III — Gestion des Incidents et Continuité}
+
+Elle traite du cycle de vie de l'incident de sécurité (ISO 27035), de l'investigation numérique (forensics légal, chaîne de custode), de la planification de la continuité (BIA, RTO/RPO, sites de secours) et de la mise en œuvre pratique du PCA avec simulation Ransomware.
+
+\medskip
+\noindent\textbf{Partie IV — Gestion de Crise et RETEX}
+
+Elle aborde la dimension stratégique et humaine : différence incident/crise, organisation de la cellule de crise, communication sous pression (règle des 3T, \textit{holding statement}), simulation Tabletop et retour d'expérience structuré.
+
+% ==============================================================================
+\section*{Posture Pédagogique}
+% ==============================================================================
+
+\begin{boxinfo}
+\textbf{Prérequis recommandés :}
+\begin{itemize}
+    \item Notions de base en réseaux informatiques (TCP/IP, protocoles, firewalls).
+    \item Connaissance des systèmes d'exploitation Windows et Linux.
+    \item Cours d'Audit des SI et/ou Hacking Éthique appréciés en préalable.
+    \item Sensibilité au droit numérique (RGPD, responsabilité civile et pénale).
+\end{itemize}
+\end{boxinfo}
+
+\vspace{2ex}
+\begin{center}
+    {\color{CouleurAccent}\rule{0.6\linewidth}{1pt}}\\[0.8ex]
+    {\small\itshape\color{CouleurPrimaire}
+        Ce cours est né de la conviction que la sécurité de l'information\\
+        n'est ni une affaire de techniciens seuls, ni une affaire de managers seuls —\\
+        mais une responsabilité partagée qui exige de maîtriser les deux langages.}\\[0.5ex]
+    {\small\bfseries\color{CouleurPrimaire}\auteurcours}
+\end{center}

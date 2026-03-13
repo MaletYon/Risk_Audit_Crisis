@@ -1,0 +1,152 @@
+\chapter{Le Processus de Gestion d'Incident (ISO 27035)}
+\label{chap:procincident}
+
+Pour gérer l'imprévisible, il faut une méthodologie rigoureuse. La norme \textbf{ISO 27035} fournit le cadre international pour gérer les incidents de sécurité de l'information de manière structurée.
+
+\section{Présentation de l'ISO 27035}
+
+\subsection{Objectif de la Norme}
+
+\begin{boxdef}
+\textbf{ISO 27035} : Norme internationale intitulée "Gestion des incidents de sécurité de l'information". Elle fournit des lignes directrices pour planifier, préparer, détecter, signaler et répondre aux incidents.
+\end{boxdef}
+
+L'objectif n'est pas seulement de réagir, mais d'apprendre de chaque incident pour renforcer le Système de Management de la Sécurité (SMSI). Elle s'inscrit dans le cycle PDCA (Act).
+
+\subsection{Les 5 Phases du Processus}
+
+La norme structure la gestion d'incident en cinq phases séquentielles :
+
+\begin{enumerate}
+    \item \textbf{Planifier :} Définir la politique d'incident.
+    \item \textbf{Préparer :} Mettre en place les équipes et les outils.
+    \item \textbf{Détecter et Signaler :} Identifier les événements suspects.
+    \item \textbf{Évaluer et Réagir :} Traiter l'incident.
+    \item \textbf{Apprendre :} Améliorer le système.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Phase 1 et 2 : Planification et Préparation}
+% ------------------------------------------------------------------------------
+
+\subsection{Politique de Gestion d'Incident}
+
+L'entreprise doit définir clairement :
+\begin{itemize}
+    \item Ce qui constitue un incident.
+    \item Qui est responsable de la réaction.
+    \item Les délais de remontée d'information.
+\end{itemize}
+
+\subsection{Les Équipes d'Intervention (CSIRT / CERT)}
+
+La préparation implique la création d'une équipe dédiée.
+
+\begin{boxdef}
+\begin{itemize}
+    \item \textbf{CERT (Computer Emergency Response Team) :} Terme historique, souvent utilisé pour les équipes nationales ou sectorielles.
+    \item \textbf{CSIRT (Computer Security Incident Response Team) :} Terme standard pour une équipe interne à l'entreprise.
+\end{itemize}
+\end{boxdef}
+
+Le CSIRT est le point de contact unique pour la gestion des incidents. Il a pour mission : Réception, Tri, Analyse, Réponse, Coordination.
+
+\begin{boxlizbiz}
+\textbf{Organisation chez LiZbiZ :}
+LiZbiZ n'a pas encore de CSIRT dédié. La DSI a demandé à un groupe de 3 techniciens de former une "Cellule Cyber" de garde. L'un d'eux est désigné comme "Leader Incident".
+\end{boxlizbiz}
+
+% ------------------------------------------------------------------------------
+\section{Phase 3 : Détection et Signaler}
+% ------------------------------------------------------------------------------
+
+C'est le moment où l'on passe de l'événement brut à l'incident confirmé.
+
+\subsection{Les Outils de Détection (SOC et SIEM)}
+
+\begin{boxdef}
+\textbf{SOC (Security Operations Center) :} Structure organisationnelle (une équipe) qui surveille le SI 24/7 pour détecter les anomalies.
+\end{boxdef}
+
+\begin{boxdef}
+\textbf{SIEM (Security Information and Event Management) :} Outil logiciel qui centralise les logs, corrèle les événements et génère des alertes.
+\end{boxdef}
+
+Le SIEM est l'outil technique indispensable. Il collecte les logs des pare-feux, des serveurs, des antivirus et cherche des motifs d'attaque.
+
+\subsection{Tri et Qualification}
+
+Toutes les alertes ne sont pas des incidents. Le processus de tri (Triage) doit répondre à :
+\begin{itemize}
+    \item L'alerte est-elle un Faux Positif ?
+    \item Quelle est la gravité réelle ?
+    \item Quelle est l'urgence de traitement ?
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Phase 4 : Réaction et Traitement}
+% ------------------------------------------------------------------------------
+
+Une fois l'incident confirmé, la réaction suit un cycle strict.
+
+\subsection{Confinement (Containment)}
+
+C'est la priorité absolue. Limiter les dégâts avant de nettoyer.
+\begin{itemize}
+    \item Isoler la machine du réseau (VLAN de quarantaine).
+    \item Bloquer une IP externe au pare-feu.
+    \item Désactiver un compte utilisateur compromis.
+\end{itemize}
+
+\subsection{Éradication et Rétablissement}
+
+\begin{itemize}
+    \item \textbf{Éradication :} Supprimer le malware, reboucher la faille.
+    \item \textbf{Rétablissement :} Restaurer les données, remettre le service en ligne.
+\end{itemize}
+
+\subsection{Les Outils Procéduraux : Playbook et Runbook}
+
+Pour réagir vite, on n'improvise pas. On suit des scripts.
+
+\begin{boxdef}
+\begin{itemize}
+    \item \textbf{Playbook :} Document qui décrit la procédure logique de réponse à un type d'incident donné (ex: "Procédure en cas de Ransomware"). C'est le "Quoi faire".
+    \item \textbf{Runbook :} Document technique détaillant les commandes exactes et les clics à effectuer (ex: "Commande Linux pour isoler une interface"). C'est le "Comment faire".
+\end{itemize}
+\end{boxdef}
+
+% ------------------------------------------------------------------------------
+\section{Cas LiZbiZ : Simulation de Détection dans le Lab}
+% ------------------------------------------------------------------------------
+
+\subsection{Scénario : L'Alerte Nocturne}
+
+\begin{boxlizbiz}
+\textbf{Contexte :} Il est 3h du matin. Le serveur SIEM du Lab GNS3 génère une alerte critique.
+\end{boxlizbiz}
+
+\subsection{Analyse de l'Alerte (Travaux Pratiques)}
+
+Les étudiants se connectent à l'interface du SIEM (ex: Splunk ou ELK Stack simulé).
+
+\textbf{L'alerte indique :}
+\begin{itemize}
+    \item \textbf{Source :} VLAN 40 (IoT Logistique).
+    \item \textbf{Destination :} VLAN 20 (Serveur ERP).
+    \item \textbf{Type :} Tentative de connexion SSH multiple (Brute Force).
+    \item \textbf{État :} Succès (Authentification réussie).
+    \item \textbf{Utilisateur :} admin\_erp.
+\end{itemize}
+
+\textbf{Questions pour l'analyste (Étudiant) :}
+\begin{enumerate}
+    \item \textbf{Qualification :} Est-ce un incident ou un événement normal ? (Justifiez : un scanner IoT ne doit pas se connecter en SSH à l'ERP).
+    \item \textbf{Confinement :} Quelle action technique immédiate proposez-vous sur le Firewall pFsense pour stopper l'attaque ? (Proposition : Bloquer l'IP source ou couper le flux VLAN 40 -> 20).
+    \item \textbf{Consultation du Playbook :} Le Playbook "Accès non autorisé" demande de vérifier si d'autres machines sont touchées. Quelle commande Linux utiliseriez-vous sur le serveur ERP pour voir qui est connecté ? (Proposition : \texttt{who} ou \texttt{last}).
+\end{enumerate}
+
+% ==============================================================================
+% Fichier : 04_module_incident.tex (Extrait Chapitre 3)
+% Description : Investigation Numérique (Forensics)
+% ==============================================================================
