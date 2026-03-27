@@ -1,0 +1,724 @@
+% ==============================================================================
+% Fichier     : style.sty
+% Titre       : Feuille de style académique générique
+% Auteur      : MAGUENA NDENE Marcel Allan
+% Institution : Université de Yaoundé I — ENSP
+% Description : Feuille de style réutilisable pour tout devoir/rapport.
+%               Toutes les métadonnées sont paramétrables depuis main.tex.
+%               Palette : bleu académique / orange accent / gris neutres.
+% Usage       : \usepackage{style} dans main.tex, puis définir les
+%               commandes de métadonnées listées en section I.
+% Révision    : 2026
+% ==============================================================================
+
+\ProvidesPackage{style}[2026/03/01 Feuille de style académique — MAGUENA NDENE Marcel Allan]
+
+% ==============================================================================
+% I. PACKAGES REQUIS
+% ==============================================================================
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[provide=*,french]{babel}
+\RequirePackage{lmodern}
+\RequirePackage[protrusion=true,expansion=false]{microtype}
+
+% --- Mise en page ---
+\RequirePackage[
+    top=2.5cm, bottom=2.5cm,
+    left=2.8cm, right=2.5cm,
+    headheight=14pt
+]{geometry}
+
+% --- Couleurs ---
+\RequirePackage[dvipsnames, table]{xcolor}
+
+% --- Graphiques & Figures ---
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{wrapfig}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows, calc}
+
+% --- Tableaux ---
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+
+% --- Mathématiques ---
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+
+% --- Environnements décoratifs ---
+\RequirePackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+% --- Listes ---
+\RequirePackage{enumitem}
+
+% --- Code source ---
+\RequirePackage{listings}
+\RequirePackage{lstautogobble}
+
+% --- En-têtes et pieds de page ---
+\RequirePackage{fancyhdr}
+
+% --- Hyperréférences (couleurs héritent de la palette) ---
+\RequirePackage[
+    colorlinks=true,
+    linkcolor=BleuPrimaire,
+    urlcolor=BleuSecondaire,
+    citecolor=OrangeAccent,
+    bookmarks=true,
+    bookmarksnumbered=true
+]{hyperref}
+
+% --- Bibliographie ---
+\RequirePackage[
+    backend=biber,
+    style=ieee,
+    sorting=nyt
+]{biblatex}
+
+% --- Index ---
+\RequirePackage{makeidx}
+\makeindex
+
+% --- Glossaires ---
+\RequirePackage[toc, acronym]{glossaries}
+
+% --- Divers ---
+\RequirePackage{epigraph}
+\RequirePackage{pifont}
+\RequirePackage{marvosym}
+\RequirePackage{setspace}
+\RequirePackage{pdflscape}
+\RequirePackage{afterpage}
+\RequirePackage{changepage}
+
+
+% ==============================================================================
+% II. MÉTADONNÉES PARAMÉTRABLES
+% ==============================================================================
+%
+% Définissez ces commandes AVANT \begin{document} dans votre main.tex.
+% Des valeurs par défaut sont fournies ici pour éviter les erreurs si
+% une commande est oubliée.
+%
+% Exemple dans main.tex :
+%   \renewcommand{\doctitre}{Analyse de Risque et Gestion de Crise}
+%   \renewcommand{\docsoustitre}{Gouvernance, Conformité, Résilience}
+%   \renewcommand{\doctypedevoir}{Rapport de TP}
+%   \renewcommand{\docue}{GES4062}
+%   \renewcommand{\doclogo}{images/logo.png}
+%   \renewcommand{\docauteur}{MAGUENA NDENE Marcel Allan}
+%   \renewcommand{\docinstitution}{Université de Yaoundé I — ENSP}
+%   \renewcommand{\docdepartement}{Département de Génie Informatique}
+%   \renewcommand{\docanneescolaire}{2025--2026}
+%   \renewcommand{\docnormes}{ISO 27001 · ISO 19011 · ISO 22301}
+%   \renewcommand{\docepigraphe}{Votre citation ici.}
+% ==============================================================================
+
+\newcommand{\doctitre}{Titre du devoir}
+\newcommand{\docsoustitre}{Sous-titre ou thématique}
+\newcommand{\doctypedevoir}{Rapport}
+\newcommand{\docue}{UE-XXXX}
+\newcommand{\doclogo}{logo.png}
+\newcommand{\docauteur}{Auteur}
+\newcommand{\docinstitution}{Institution}
+\newcommand{\docdepartement}{Département}
+\newcommand{\docanneescolaire}{20XX--20XX}
+\newcommand{\docnormes}{}           % Laisser vide si non applicable
+\newcommand{\docepigraphe}{}        % Laisser vide pour ne pas afficher d'épigraphe
+
+
+% ==============================================================================
+% III. PALETTE CHROMATIQUE — BLEU ACADÉMIQUE + ORANGE + GRIS
+% ==============================================================================
+
+% ── Bleus (hiérarchie visuelle principale) ───────────────────────────────────
+\definecolor{BleuPrimaire}{RGB}{0, 56, 120}          % Bleu marine — chapitres, titres
+\definecolor{BleuSecondaire}{RGB}{0, 102, 179}       % Bleu vif — sections, liens
+\definecolor{BleuClair}{RGB}{210, 228, 250}          % Bleu très pâle — fonds de boîtes
+\definecolor{BleuMoyen}{RGB}{100, 160, 220}          % Bleu intermédiaire — filets légers
+
+% ── Oranges d'accent ─────────────────────────────────────────────────────────
+\definecolor{OrangeAccent}{RGB}{210, 100, 0}         % Orange foncé — accent fort
+\definecolor{OrangePale}{RGB}{255, 237, 210}         % Orange très pâle — fond alerte
+\definecolor{OrangeMoyen}{RGB}{240, 160, 50}         % Orange moyen
+
+% ── Gris neutres ─────────────────────────────────────────────────────────────
+\definecolor{NoirProfond}{RGB}{15, 15, 15}           % Quasi-noir — en-têtes
+\definecolor{GrisAncre}{RGB}{45, 45, 45}             % Texte courant
+\definecolor{GrisMoyen}{RGB}{100, 100, 100}          % Annotations
+\definecolor{GrisClair}{RGB}{160, 160, 160}          % Légendes, pieds de page
+\definecolor{GrisTresLeger}{RGB}{240, 240, 240}      % Fonds discrets
+
+% ── Couleurs fonctionnelles ───────────────────────────────────────────────────
+\definecolor{FondDef}{RGB}{225, 237, 252}
+\definecolor{BordDef}{RGB}{0, 56, 120}
+\definecolor{FondAlerte}{RGB}{255, 237, 210}
+\definecolor{BordAlerte}{RGB}{210, 100, 0}
+\definecolor{FondCasPratique}{RGB}{232, 244, 255}
+\definecolor{BordCasPratique}{RGB}{0, 102, 179}
+\definecolor{FondInfo}{RGB}{248, 248, 248}
+\definecolor{BordInfo}{RGB}{130, 130, 130}
+\definecolor{FondCode}{RGB}{246, 246, 246}
+\definecolor{BordCode}{RGB}{0, 102, 179}
+
+% ── Tableaux ─────────────────────────────────────────────────────────────────
+\definecolor{TableauPair}{RGB}{232, 241, 252}
+\definecolor{TableauImpair}{RGB}{255, 255, 255}
+\definecolor{TableauEntete}{RGB}{0, 56, 120}
+
+
+% ==============================================================================
+% IV. TYPOGRAPHIE
+% ==============================================================================
+
+\setstretch{1.15}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.4ex}
+
+
+% ==============================================================================
+% V. STYLES DE CHAPITRES ET SECTIONS
+% ==============================================================================
+
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+
+% --- Chapitre : carré bleu marine + titre en capitales + filet orange ---
+\titleformat{\chapter}[display]
+    {\normalfont\bfseries\color{BleuPrimaire}}
+    {%
+        \filleft
+        \begin{tikzpicture}
+            \fill[BleuPrimaire] (0,0) rectangle (1.2,1.2);
+            \node[white, font=\fontsize{28}{28}\selectfont\bfseries]
+                at (0.6,0.6) {\thechapter};
+        \end{tikzpicture}
+    }
+    {-0.5ex}
+    {\filright\fontsize{18}{22}\selectfont\MakeUppercase}
+    [\vspace{0.5ex}{\color{OrangeAccent}\titlerule[2pt]}\vspace{1ex}]
+
+\titlespacing*{\chapter}{0pt}{10pt}{25pt}
+
+% --- Section : numéro sur fond bleu marine + filet bleu secondaire ---
+\titleformat{\section}
+    {\normalfont\large\bfseries\color{BleuPrimaire}}
+    {\colorbox{BleuPrimaire}{\color{white}\,\thesection\,}}
+    {0.7em}{}
+    [\vspace{-0.4ex}{\color{BleuSecondaire}\titlerule[0.8pt]}]
+
+\titlespacing*{\section}{0pt}{1.4ex plus 0.5ex}{0.8ex plus 0.3ex}
+
+% --- Sous-section : bleu secondaire ---
+\titleformat{\subsection}
+    {\normalfont\normalsize\bfseries\color{BleuSecondaire}}
+    {\thesubsection}{0.6em}{}
+
+\titlespacing*{\subsection}{0pt}{1.2ex plus 0.4ex}{0.5ex plus 0.2ex}
+
+% --- Sous-sous-section : orange accent, italique ---
+\titleformat{\subsubsection}
+    {\normalfont\normalsize\itshape\color{OrangeAccent}}
+    {\thesubsubsection}{0.5em}{}
+
+\titlespacing*{\subsubsection}{0pt}{0.8ex plus 0.3ex}{0.3ex plus 0.1ex}
+
+
+% ==============================================================================
+% VI. EN-TÊTES ET PIEDS DE PAGE
+% ==============================================================================
+%
+% En-tête gauche  : titre du chapitre courant (bleu)
+% En-tête droite  : code UE en petites capitales (gris)  ← \docue
+% Filet haut      : bleu marine
+% Pied gauche     : auteur  ← \docauteur
+% Pied centre     : numéro de page (bleu)
+% Pied droite     : titre court  ← \doctitre
+% Filet bas       : orange accent
+% ==============================================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{BleuPrimaire}\hrule width\headwidth height\headrulewidth}
+\renewcommand{\footrule}{\color{OrangeAccent}\hrule width\headwidth height\footrulewidth}
+
+\fancyhead[LE,LO]{\small\color{BleuPrimaire}\leftmark}
+\fancyhead[RE,RO]{\small\color{GrisMoyen}\textsc{UE\,:\,\docue}}
+
+\fancyfoot[LE,LO]{\footnotesize\color{GrisClair}\textit{\docauteur}}
+\fancyfoot[C]{\footnotesize\color{BleuPrimaire}\textbf{---\ \thepage\ ---}}
+\fancyfoot[RE,RO]{\footnotesize\color{GrisClair}\textit{\doctitre}}
+
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \renewcommand{\footrule}{\color{OrangeAccent}\hrule width\headwidth height\footrulewidth}
+    \fancyfoot[C]{\footnotesize\color{BleuPrimaire}\textbf{---\ \thepage\ ---}}
+    \fancyfoot[LE,LO]{\footnotesize\color{GrisClair}\textit{\docauteur}}
+    \fancyfoot[RE,RO]{\footnotesize\color{GrisClair}\textit{\docinstitution}}
+}
+
+
+% ==============================================================================
+% VII. TABLE DES MATIÈRES
+% ==============================================================================
+
+\contentsmargin{0pt}
+
+\titlecontents{chapter}
+    [1.5em]
+    {\addvspace{1ex}\bfseries\color{BleuPrimaire}}
+    {\contentslabel{1.5em}}
+    {\hspace*{-1.5em}}
+    {\hfill\contentspage}
+    [\addvspace{0.3ex}]
+
+\titlecontents{section}
+    [3.8em]
+    {\small\color{GrisAncre}}
+    {\contentslabel{2.3em}}
+    {\hspace*{-2.3em}}
+    {\ \titlerule*[0.5pc]{.}\contentspage}
+
+\titlecontents{subsection}
+    [6.5em]
+    {\footnotesize\color{GrisMoyen}}
+    {\contentslabel{3em}}
+    {\hspace*{-3em}}
+    {\ \titlerule*[0.5pc]{.}\contentspage}
+
+
+% ==============================================================================
+% VIII. ENVIRONNEMENTS TCOLORBOX
+% ==============================================================================
+%
+% Boîtes disponibles :
+%   \begin{boxdef}      …  \end{boxdef}        Définition         (bleu pâle)
+%   \begin{boxalert}    …  \end{boxalert}       Attention          (orange pâle)
+%   \begin{boxinfo}     …  \end{boxinfo}        Note               (gris léger)
+%   \begin{boxobjectifs}…  \end{boxobjectifs}   Objectifs          (bleu clair)
+%   \begin{boxresume}   …  \end{boxresume}      À retenir          (gris + filets orange)
+%   \begin{boxexo}      …  \end{boxexo}         Exercice           (blanc, filet gauche)
+%   \begin{boxcas}[Titre optionnel] … \end{boxcas}  Cas pratique  (bleu très pâle)
+%
+% Toutes les boîtes acceptent un argument optionnel pour personnaliser les
+% options tcolorbox, ex. : \begin{boxdef}[title={Ma définition}]
+% ==============================================================================
+
+% --- A. Définition ---
+\newtcolorbox{boxdef}[1][]{
+    enhanced, breakable,
+    colback=FondDef, colframe=BordDef,
+    fonttitle=\bfseries\small\color{white},
+    title={D\'efinition},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=BleuPrimaire, colframe=BleuPrimaire, sharp corners},
+    sharp corners, boxrule=0pt, leftrule=4pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+% --- B. Attention / Alerte ---
+\newtcolorbox{boxalert}[1][]{
+    enhanced, breakable,
+    colback=FondAlerte, colframe=BordAlerte,
+    fonttitle=\bfseries\small\color{white},
+    title={Attention},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=OrangeAccent, colframe=OrangeAccent, sharp corners},
+    sharp corners, boxrule=0pt, leftrule=5pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+% --- C. Cas pratique (titre personnalisable) ---
+\newtcolorbox{boxcas}[2][]{
+    enhanced, breakable,
+    colback=FondCasPratique, colframe=BordCasPratique,
+    fonttitle=\bfseries\small\color{white},
+    title={Cas Pratique\ifx&#2&\else{} \textemdash{} #2\fi},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=BleuSecondaire, colframe=BleuSecondaire, sharp corners},
+    sharp corners, boxrule=0.8pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+% --- D. Note / Information ---
+\newtcolorbox{boxinfo}[1][]{
+    enhanced, breakable,
+    colback=FondInfo, colframe=BordInfo,
+    fonttitle=\bfseries\small\color{GrisAncre},
+    title={Note},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=GrisTresLeger, colframe=BordInfo, sharp corners},
+    sharp corners, boxrule=0pt, leftrule=2pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+% --- E. Objectifs de chapitre ---
+\newtcolorbox{boxobjectifs}[1][]{
+    enhanced, breakable,
+    colback=BleuClair, colframe=BleuPrimaire,
+    fonttitle=\bfseries\small\color{white},
+    title={Objectifs du chapitre},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=BleuPrimaire, colframe=BleuPrimaire, sharp corners},
+    sharp corners, boxrule=0.8pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+% --- F. À retenir ---
+\newtcolorbox{boxresume}[1][]{
+    enhanced, breakable,
+    colback=GrisTresLeger, colframe=OrangeAccent,
+    fonttitle=\bfseries\small\color{white},
+    title={\`A retenir},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=OrangeAccent, colframe=OrangeAccent, sharp corners},
+    sharp corners, boxrule=0pt, toprule=2pt, bottomrule=2pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+% --- G. Exercice ---
+\newtcolorbox{boxexo}[1][]{
+    enhanced, breakable,
+    colback=white, colframe=BleuSecondaire,
+    fonttitle=\bfseries\small\color{white},
+    title={Exercice},
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=BleuSecondaire, colframe=BleuSecondaire, sharp corners},
+    sharp corners, boxrule=0pt, leftrule=3pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    #1
+}
+
+
+% ==============================================================================
+% IX. STYLE DE CODE SOURCE
+% ==============================================================================
+
+\lstdefinestyle{StyleCode}{
+    backgroundcolor=\color{FondCode},
+    basicstyle=\ttfamily\footnotesize\color{GrisAncre},
+    keywordstyle=\bfseries\color{BleuPrimaire},
+    commentstyle=\itshape\color{GrisClair},
+    stringstyle=\color{OrangeAccent},
+    numberstyle=\tiny\color{GrisClair},
+    breakatwhitespace=false, breaklines=true,
+    captionpos=b, keepspaces=true,
+    numbers=left, numbersep=8pt,
+    showspaces=false, showstringspaces=false, showtabs=false,
+    tabsize=4,
+    frame=single, frameround=ffff,
+    rulecolor=\color{BordCode},
+    autogobble=true,
+    xleftmargin=12pt, xrightmargin=4pt,
+    aboveskip=8pt, belowskip=6pt,
+    literate=
+        {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1
+        {à}{{\`a}}1 {â}{{\^a}}1 {ç}{{\c{c}}}1 {ù}{{\`u}}1
+        {û}{{\^u}}1 {î}{{\^i}}1 {ô}{{\^o}}1
+}
+
+\lstset{style=StyleCode}
+
+\lstdefinelanguage{SQL}{
+    keywords={SELECT, FROM, WHERE, AND, OR, NOT, INSERT, INTO, VALUES,
+              UPDATE, SET, DELETE, CREATE, TABLE, ALTER, DROP, INDEX,
+              JOIN, LEFT, RIGHT, INNER, OUTER, ON, GROUP, BY, ORDER,
+              HAVING, AS, DISTINCT, UNION, ALL, IN, EXISTS, LIKE,
+              IS, NULL, BETWEEN, CASE, WHEN, THEN, ELSE, END,
+              PRIMARY, KEY, FOREIGN, REFERENCES, UNIQUE, CHECK,
+              DATABASE, USE, SHOW, DESCRIBE, GRANT, REVOKE},
+    sensitive=false,
+    morecomment=[l]{--},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]', morestring=[b]"
+}
+
+
+% ==============================================================================
+% X. LISTES PERSONNALISÉES
+% ==============================================================================
+
+\setlist[itemize,1]{
+    leftmargin=1.8em,
+    label={\color{BleuSecondaire}\textbullet},
+    itemsep=0.3ex
+}
+\setlist[itemize,2]{
+    leftmargin=1.5em,
+    label={\color{OrangeAccent}$\triangleright$},
+    itemsep=0.2ex
+}
+\setlist[itemize,3]{
+    leftmargin=1.2em,
+    label={\color{GrisMoyen}$\circ$},
+    itemsep=0.1ex
+}
+\setlist[enumerate,1]{
+    leftmargin=2em,
+    label={\color{BleuPrimaire}\bfseries\arabic*.},
+    itemsep=0.3ex
+}
+\setlist[enumerate,2]{
+    leftmargin=1.8em,
+    label={\color{BleuSecondaire}\alph*)},
+    itemsep=0.2ex
+}
+
+
+% ==============================================================================
+% XI. ENVIRONNEMENT TABLEAU ACADÉMIQUE
+% ==============================================================================
+%
+% Usage :
+%   \begin{tableaucours}{<spec colonnes>}{<en-tête>}
+%     contenu …
+%   \end{tableaucours}
+%
+% Exemple :
+%   \begin{tableaucours}{>{\bfseries}p{3cm} p{10cm}}{Terme & Définition}
+%     Risque & Probabilité d'occurrence d'une menace … \\
+%   \end{tableaucours}
+% ==============================================================================
+
+\newenvironment{tableaucours}[2]{%
+    \begin{table}[H]
+    \centering\small
+    \rowcolors{2}{TableauPair}{TableauImpair}
+    \begin{tabular}{#1}
+    \toprule
+    \rowcolor{TableauEntete}
+    \color{white}\bfseries #2
+    \midrule
+}{%
+    \bottomrule
+    \end{tabular}
+    \end{table}
+}
+
+
+% ==============================================================================
+% XII. COMMANDES UTILITAIRES
+% ==============================================================================
+
+% Terme clé indexé et mis en gras bleu
+\newcommand{\termecle}[1]{%
+    \textbf{\color{BleuPrimaire}#1}\index{#1}%
+}
+
+% Sigle en petites capitales
+\newcommand{\sigle}[1]{\textsc{#1}}
+
+% Note en marge
+\newcommand{\notemarge}[1]{%
+    \marginpar{\footnotesize\color{GrisMoyen}\itshape #1}%
+}
+
+% Niveaux de difficulté
+\newcommand{\niveaubase}{%
+    \textcolor{GrisMoyen}{\small\textsc{[Niveau\,1]}}}
+\newcommand{\niveaumoyen}{%
+    \textcolor{BleuSecondaire}{\small\textsc{[Niveau\,2]}}}
+\newcommand{\niveauexpert}{%
+    \textcolor{OrangeAccent}{\small\textsc{[Niveau\,3]}}}
+
+% Référence à une norme (ex. : \norme{ISO 27001})
+\newcommand{\norme}[1]{\textbf{\color{OrangeAccent}[#1]}}
+
+% Séparateur décoratif entre sections
+\newcommand{\separateur}{%
+    \vspace{1ex}
+    \begin{center}
+        {\color{BleuMoyen}\rule{0.3\linewidth}{0.5pt}}%
+        \quad{\color{OrangeAccent}\rule{0.06\linewidth}{1pt}}\quad%
+        {\color{BleuMoyen}\rule{0.3\linewidth}{0.5pt}}
+    \end{center}
+    \vspace{0.6ex}
+}
+
+
+% ==============================================================================
+% XIII. PAGE DE TITRE — \maketitlecours
+% ==============================================================================
+%
+% Place \maketitlecours juste après \begin{document}.
+% Elle utilise automatiquement les métadonnées définies en section II.
+%
+% Structure :
+%   — Double cadre (noir fin extérieur + orange épais intérieur)
+%   — Tableau bilingue FR | Logo | EN  ← logo fourni via \doclogo
+%   — Bandeau de type de document : \doctypedevoir — UE : \docue
+%   — Titre principal : \doctitre
+%   — Sous-titre : \docsoustitre
+%   — Bloc normes (optionnel) : \docnormes  (vide = non affiché)
+%   — Épigraphe (optionnel) : \docepigraphe (vide = non affiché)
+%   — Bloc auteur : \docauteur / \docinstitution / \docdepartement / \docanneescolaire
+% ==============================================================================
+
+\newcommand{\maketitlecours}{%
+    \thispagestyle{empty}
+    \begin{titlepage}
+
+    % ── Double cadre ─────────────────────────────────────────────
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[NoirProfond, line width=1pt]
+            ([xshift=0.7cm,  yshift=-0.7cm]  current page.north west)
+            rectangle
+            ([xshift=-0.7cm, yshift=0.7cm]   current page.south east);
+        \draw[OrangeAccent, line width=2.5pt]
+            ([xshift=0.95cm,  yshift=-0.95cm]  current page.north west)
+            rectangle
+            ([xshift=-0.95cm, yshift=0.95cm]   current page.south east);
+    \end{tikzpicture}
+
+    \vspace*{0.3cm}
+    \begin{adjustwidth}{0.6cm}{0.6cm}
+
+    % ── Tableau bilingue FR | Logo | EN ──────────────────────────
+    {\renewcommand{\arraystretch}{0.45}
+    \noindent
+    \begin{tabular}{@{}
+        >{\centering\arraybackslash\footnotesize}p{0.34\linewidth}
+        >{\centering\arraybackslash}p{0.22\linewidth}
+        >{\centering\arraybackslash\footnotesize}p{0.34\linewidth}
+        @{}}
+        \textbf{REPUBLIQUE DU CAMEROUN}
+            & \multirow{16}{*}{\includegraphics[width=3.0cm]{\doclogo}}
+            & \textbf{REPUBLIC OF CAMEROON}          \\
+        Paix-Travail-Patrie          & & Peace - Work - Fatherland\\
+        *****     & & *****\\
+        \textbf{MINIST\`ERE DE L'ENSEIGNEMENT SUP\'ERIEUR}
+            & & \textbf{MINISTRY OF HIGHER EDUCATION} \\
+        ***** & & *****                               \\
+        \textbf{UNIVERSIT\'E DE YAOUND\'E I}
+            & & \textbf{UNIVERSITY OF YAOUND\'E I}    \\
+        ***** & & *****                               \\
+        \textbf{\'ECOLE NATIONALE SUP\'ERIEURE POLYTECHNIQUE}
+            & & \textbf{NATIONAL ADVANCED SCHOOL OF ENGINEERING} \\
+        ***** & & *****                               \\
+        \textbf{D\'EPARTEMENT DE G\'ENIE INFORMATIQUE}
+            & & \textbf{COMPUTER ENGINEERING DEPARTMENT} \\
+        ***** & & *****
+    \end{tabular}}
+
+    \vspace{0.8cm}
+
+    % ── Type de document ─────────────────────────────────────────
+    \begin{center}
+        {\color{GrisMoyen}\small\textsc{%
+            \doctypedevoir{} --- UE\,:\,\docue%
+        }}\\[1.2ex]
+        {\color{BleuMoyen}\rule{0.5\linewidth}{0.5pt}}
+    \end{center}
+
+    \vspace{0.5cm}
+
+    % ── Titre principal ──────────────────────────────────────────
+    \begin{center}
+        {\color{BleuPrimaire}
+            \fontsize{22}{28}\selectfont\bfseries
+            \MakeUppercase{\doctitre}
+        }\\[1.0ex]
+        {\color{OrangeAccent}\large\itshape \docsoustitre}
+    \end{center}
+
+    \vspace{0.6cm}
+
+    % ── Filet médian ─────────────────────────────────────────────
+    \begin{center}
+        {\color{BleuMoyen}\rule{0.28\linewidth}{0.5pt}}%
+        \enspace{\color{OrangeAccent}\rule{0.08\linewidth}{1.5pt}}\enspace%
+        {\color{BleuMoyen}\rule{0.28\linewidth}{0.5pt}}
+    \end{center}
+
+    \vspace{0.5cm}
+
+    % ── Normes (optionnel — vide si \docnormes est vide) ─────────
+    \ifx\docnormes\empty\else
+    \begin{center}
+        {\color{GrisClair}\footnotesize \docnormes}
+    \end{center}
+    \vspace{0.4cm}
+    \fi
+
+    % ── Épigraphe (optionnel — vide si \docepigraphe est vide) ───
+    \ifx\docepigraphe\empty\else
+    \vspace{0.3cm}
+    \begin{center}
+        {\color{GrisMoyen}\itshape\small \og{}\docepigraphe\fg{}}
+    \end{center}
+    \vspace{0.3cm}
+    \fi
+
+    \vfill
+
+    % ── Bloc auteur ──────────────────────────────────────────────
+    {\color{white}
+        \colorbox{OrangeAccent}{%
+            \begin{minipage}{\linewidth}
+                \vspace{0.5cm}
+                \begin{center}
+                    {\large\bfseries\docauteur}\\[0.5ex]
+                    {\small\itshape \docinstitution\ ---\ \docdepartement}\\[0.6ex]
+                    {\normalsize Ann\'ee acad\'emique \docanneescolaire}
+                \end{center}
+                \vspace{0.5cm}
+            \end{minipage}%
+        }%
+    }
+
+    \end{adjustwidth}
+    \end{titlepage}
+    \setcounter{page}{1}
+}
+
+
+% ==============================================================================
+% XIV. ENVIRONNEMENTS MATHÉMATIQUES
+% ==============================================================================
+
+\theoremstyle{definition}
+\newtheorem{theoreme}{Th\'eor\`eme}[chapter]
+\newtheorem{definition}{D\'efinition}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{corollaire}{Corollaire}[chapter]
+\newtheorem{lemme}{Lemme}[chapter]
+
+\theoremstyle{remark}
+\newtheorem{remarque}{Remarque}[chapter]
+\newtheorem{exemple}{Exemple}[chapter]
+
+
+% ==============================================================================
+% XV. PARAMÈTRES FINAUX
+% ==============================================================================
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\hyphenpenalty=800
+\exhyphenpenalty=800
+\color{GrisAncre}
+
+\endinput
+% ==============================================================================
+% Fin de style.sty — MAGUENA NDENE Marcel Allan
+% ==============================================================================
